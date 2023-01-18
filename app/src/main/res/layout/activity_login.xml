@@ -19,28 +19,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img_applogo" />
 
-        <Button
-            android:id="@+id/btnFacebookLogin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/bg_gray"
-            android:drawableStart="@drawable/ic_facebook"
-            android:drawablePadding="10dp"
-            android:onClick="performFacebookLogin"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/txt_facebook"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="@+id/btnGoogleLogin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnGoogleLogin"
-            app:layout_constraintTop_toTopOf="@+id/btnGoogleLogin"
-            app:layout_constraintVertical_bias="0.0" />
-
         <EditText
             android:id="@+id/txtPassword"
             android:layout_width="0dp"
@@ -75,27 +53,6 @@
             android:text="@string/txt_forgotpassword"
             app:layout_constraintEnd_toEndOf="@+id/txtPassword"
             app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
-
-        <Button
-            android:id="@+id/btnGoogleLogin"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/bg_gray"
-            android:drawableStart="@drawable/ic_google"
-            android:drawablePadding="10dp"
-            android:onClick="performGoogleLogin"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:text="@string/txt_google"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnFacebookLogin"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtOtherLoginWays" />
 
         <Button
             android:id="@+id/btnLogin"
@@ -164,12 +121,45 @@
             android:id="@+id/txtOtherLoginWays"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="28dp"
             android:text="@string/txt_otherLoginWays"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="@+id/txtNewAccount"
-            app:layout_constraintHorizontal_bias="0.407"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/txtNewAccount"
             app:layout_constraintTop_toBottomOf="@+id/txtNewAccount" />
+
+        <ImageView
+            android:id="@+id/btnGoogle"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:onClick="performGoogleLogin"
+            app:layout_constraintStart_toStartOf="@+id/txtOtherLoginWays"
+            app:layout_constraintTop_toBottomOf="@+id/txtOtherLoginWays"
+            app:srcCompat="@drawable/img_google" />
+
+        <ImageView
+            android:id="@+id/btnFacebook"
+            android:layout_width="52dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:onClick="performFacebookLogin"
+            app:layout_constraintStart_toEndOf="@+id/btnGoogle"
+            app:layout_constraintTop_toBottomOf="@+id/txtOtherLoginWays"
+            app:srcCompat="@drawable/img_facebook" />
+
+        <ImageView
+            android:id="@+id/btnPhone"
+            android:layout_width="64dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/txtOtherLoginWays"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/btnFacebook"
+            app:layout_constraintTop_toBottomOf="@+id/txtOtherLoginWays"
+            app:srcCompat="@drawable/img_phone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

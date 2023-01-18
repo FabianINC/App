@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,9 @@ public class LoginActivity extends AppCompatActivity {
 
     // VARIABLES GLOBALES
     EditText input_email,input_password;
-    Button btnLogin, btnGoogle;
+    Button btnLogin;
+
+    ImageView btnGoogle, btnFacebook, btnPhone;
 
     ProgressDialog loginProgress;
 
@@ -57,7 +60,9 @@ public class LoginActivity extends AppCompatActivity {
         input_password = findViewById(R.id.txtPassword);
 
         btnLogin = findViewById(R.id.btnLogin);
-        btnGoogle = findViewById(R.id.btnGoogleLogin);
+        btnGoogle = findViewById(R.id.btnGoogle);
+        btnFacebook = findViewById(R.id.btnFacebook);
+
 
         //SE CREA UN NUEVO PROGRESS DIALOG
         loginProgress = new ProgressDialog(LoginActivity.this);
@@ -207,7 +212,8 @@ public class LoginActivity extends AppCompatActivity {
 
         //CONFIGURANDO EL SERVICIO DE GOOGLE
         GoogleSignInOptions googleSignIn = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken(getString(R.string
+                        .default_web_client_id))
                 .requestEmail()
                 .build();
 
