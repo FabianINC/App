@@ -40,6 +40,12 @@ dependencies {
     //RECICLER VIEW
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
+    //viewPager
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    //RoundImage view
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
     //VOLLEY
     implementation 'com.android.volley:volley:1.2.1'
 

@@ -7,16 +7,18 @@
         android:icon="@drawable/ic_home"
 
         />
-    <item
-        android:id="@+id/profile"
-        android:title="Perfil"
-        android:icon="@drawable/ic_person"
 
-        />
     <item
         android:id="@+id/favorite"
         android:title="Favoritos"
         android:icon="@drawable/ic_heart"
+
+        />
+
+    <item
+        android:id="@+id/profile"
+        android:title="Perfil"
+        android:icon="@drawable/ic_person"
 
         />
 
