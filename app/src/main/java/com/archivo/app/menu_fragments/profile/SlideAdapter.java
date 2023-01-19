@@ -13,7 +13,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
-public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHolder> {
+public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHolder> {
 
     private List<SliderItem> sliderItems;
     private ViewPager2 viewPager2;
@@ -25,21 +25,21 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHol
 
     @NonNull
     @Override
-    public SlideViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new SlideViewHolder(
+    public SliderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new SliderViewHolder(
                 LayoutInflater.from(parent.getContext()).inflate(
                         R.layout.slide_item_container,
                         parent,
                         false
-
                 )
-
         );
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SlideViewHolder holder, int position) {
-          holder.setImage(sliderItems.get(position));
+    public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
+
+        holder.setImageView(sliderItems.get(position));
+
     }
 
     @Override
@@ -47,21 +47,26 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SlideViewHol
         return sliderItems.size();
     }
 
-    class SlideViewHolder extends RecyclerView.ViewHolder{
+    class SliderViewHolder extends  RecyclerView.ViewHolder{
 
-    private RoundedImageView imageView;
+        private  RoundedImageView imageView;
 
-
-        public SlideViewHolder(@NonNull View itemView) {
+        SliderViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageSlide);
-
+            this.imageView = itemView.findViewById(R.id.imageSlide);
         }
-        void  setImage(SliderItem sliderItem){
+
+        void setImageView(SliderItem sliderItem){
 
             imageView.setImageResource(sliderItem.getImage());
 
+
         }
+
+
     }
+
+
+
 
 }

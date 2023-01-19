@@ -25,16 +25,16 @@ private ViewPager2 viewPager2;
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        viewPager2 = view.findViewById(R.id.viewPager_profile);
+        viewPager2 = view.findViewById(R.id.viewPagerImageSlider);
 
         List<SliderItem> sliderItems = new ArrayList<>();
         sliderItems.add(new SliderItem(R.drawable.img_prueba));
-        sliderItems.add(new SliderItem(R.drawable.img_prueba));
+        sliderItems.add(new SliderItem(R.drawable.img_applogo));
         sliderItems.add(new SliderItem(R.drawable.img_prueba));
         viewPager2.setAdapter(new SlideAdapter(sliderItems, viewPager2));
 
 
-        // Inflate the layout for this fragment
+
         return view;
     }
 }
