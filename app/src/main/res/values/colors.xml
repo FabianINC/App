@@ -11,4 +11,6 @@
     <color name="red">#E3170A</color>
     <color name="green">#37FF8B</color>
     <color name="gray"> #B3B6B7 </color>
+    <color name="fire_opal"> #EF6351 </color>
+    <color name="Salmon"> #F38375 </color>
 </resources>
