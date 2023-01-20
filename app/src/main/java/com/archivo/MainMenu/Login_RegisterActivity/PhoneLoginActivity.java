@@ -1,4 +1,4 @@
-package Login_RegisterActivity;
+package com.archivo.MainMenu.Login_RegisterActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

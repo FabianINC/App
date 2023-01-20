@@ -21,8 +21,8 @@ public class ViewPageAdapter extends FragmentStateAdapter {
         switch(position){
 
             case 0 : return new Home();
-            case 2: return new Profile();
             case 1: return new Favorite();
+            case 2: return new Profile();
             default: return new Home();
 
 

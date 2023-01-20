@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="Login_RegisterActivity.LoginActivity"
+    tools:context="com.archivo.MainMenu.Login_RegisterActivity.LoginActivity"
     android:background="@color/white">
 
 
@@ -93,7 +93,7 @@
         <TextView
             android:id="@+id/txtNewAccount"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="48dp"
             android:layout_marginTop="24dp"
             android:clickable="true"
             android:focusable="true"

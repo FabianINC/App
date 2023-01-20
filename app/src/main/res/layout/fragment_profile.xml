@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/fondo_perfil"
+    tools:context="com.archivo.MainMenu.menu_fragments.profile.Profile"
+    android:background="@drawable/bg_profile"
     >
 
     <TextView

@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
                     case  R.id.home:
                         viewPager2.setCurrentItem(0);
                         break;
-                    case R.id.profile:
+                    case R.id.favorite:
                         viewPager2.setCurrentItem(1);
                         break;
-                    case R.id.favorite:
+                    case R.id.profile:
                         viewPager2.setCurrentItem(2);
                         break;
 
@@ -58,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
                         bottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
                     break;
                     case 1 :
-                        bottomNavigationView.getMenu().findItem(R.id.profile).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.favorite).setChecked(true);
                     break;
                     case 2 :
-                        bottomNavigationView.getMenu().findItem(R.id.favorite).setChecked(true);
+                        bottomNavigationView.getMenu().findItem(R.id.profile).setChecked(true);
                     break;
 
 

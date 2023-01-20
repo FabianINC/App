@@ -15,21 +15,21 @@
         android:theme="@style/Theme.App"
         tools:targetApi="31">
         <activity
-            android:name="Login_RegisterActivity.PhoneLoginActivity"
+            android:name="com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.archivo.MainMenu.MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="Login_RegisterActivity.LoginActivity"
+            android:name="com.archivo.MainMenu.Login_RegisterActivity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,14 +42,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="Login_RegisterActivity.RegisterActivity"
+            android:name="com.archivo.MainMenu.Login_RegisterActivity.RegisterActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="Login_RegisterActivity.ResetPasswordActivity"
+            android:name="com.archivo.MainMenu.Login_RegisterActivity.ResetPasswordActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
