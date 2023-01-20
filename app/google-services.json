@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "31908710270",
+    "project_id": "moveauthsystem",
+    "storage_bucket": "moveauthsystem.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31908710270:android:e715bca19622bccf8e152f",
+        "android_client_info": {
+          "package_name": "com.archivo.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31908710270-a1kb7vqtirevnd7almqusk0785033s7l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkCVDW0OcK6d1FkxWQOj6fe68fzS1CkZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31908710270-a1kb7vqtirevnd7almqusk0785033s7l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
