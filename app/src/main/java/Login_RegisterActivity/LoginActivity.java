@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // VARIABLES GLOBALES
     EditText input_email,input_password;
-    Button btnLogin;
+    Button btnLogin, btn;
 
     ProgressDialog loginProgress;
 
@@ -65,6 +65,8 @@ public class LoginActivity extends AppCompatActivity {
 
         loginAuth = FirebaseAuth.getInstance();
         loginUser = loginAuth.getCurrentUser();
+
+        // SE CREAN LOS LISTENERS DE CADA BOTÓN
 
         /*
         sharedPreferences = getSharedPreferences("MyAppName" , MODE_PRIVATE);

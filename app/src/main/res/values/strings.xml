@@ -36,4 +36,13 @@
     <string name="txt_newpassword">Contraseña nueva</string>
     <string name="txt_newpasswordconfirmation">Confirme su contraseña</string>
     <string name="txt_btnresetpassword">Reestablecer</string>
+
+    <!-- PHONE NUMBER LOGIN STRINGS -->
+    <string name="phonenumberinstruction">Ingrese su número de teléfono</string>
+    <string name="txt_phonenumber">Número de teléfono</string>
+    <string name="btnGenerateOTP">Verificar mi número</string>
+    <string name="txtOTPVerification">Ingrese su código de verificación</string>
+    <string name="txt_OTP">Código de verificación</string>
+    <string name="btnVerifyOTP">Verificar código</string>
+
 </resources>
