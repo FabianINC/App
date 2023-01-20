@@ -17,8 +17,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.archivo.MainMenu.MainActivity;
-
+import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.*; /*SE IMPORTA TODO LO DEL FOLDER 'LoginMethods' */
 import com.archivo.app.R;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -46,11 +51,6 @@ public class LoginActivity extends AppCompatActivity {
 
     ImageView btnGoogleLogin, btnFacebookLogin, btnPhoneLogin;
 
-    ProgressDialog loginProgress;
-
-    FirebaseAuth loginAuth;
-    FirebaseUser loginUser;
-
     //String  email , password, name , apiKey;
     //SharedPreferences sharedPreferences;
 
@@ -71,12 +71,6 @@ public class LoginActivity extends AppCompatActivity {
         btnGoogleLogin = findViewById(R.id.btnGoogleLogin);
         btnFacebookLogin = findViewById(R.id.btnFacebookLogin);
         btnPhoneLogin = findViewById(R.id.btnPhoneLogin);
-
-        //SE CREA UN NUEVO PROGRESS DIALOG
-        loginProgress = new ProgressDialog(LoginActivity.this);
-
-        loginAuth = FirebaseAuth.getInstance();
-        loginUser = loginAuth.getCurrentUser();
 
         /* SE CREAN LOS LISTENERS DE CADA BOTÓN */
         
@@ -100,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
         btnFacebookLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View btnFacebookLoginClicked) {
-                performFacebookLogin();
+                //performFacebookLogin();
             }
         });
         
@@ -108,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         btnPhoneLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View btnPhoneNumberClicked) {
-                phoneNumberLoginScreen();
+                //phoneNumberLoginScreen();
             }
         });
 
@@ -135,6 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                 resetPassword();
             }
         });
+
 
 
 
@@ -226,127 +221,21 @@ public class LoginActivity extends AppCompatActivity {
     */
     }
 
-    /* VARIABLE PARA VERIFICAR QUE SEA UN CORREO VALIDO */
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    // MÉTODO PARA INICIAR SESIÓN CON CONRREO Y CONTRASEÑA
+
+    // MÉTODO PARA INICIAR SESIÓN CON CORREO Y CONTRASEÑA
     private void performEmailLogin(){
-
-        // SE OBTIENEN TODOS LOS DATOS INGRESADOS
-        final String userEmail = inputEmail.getText().toString();
-        final String userPassword = inputPassword.getText().toString();
-
-        // VERIFICAMOS QUE EL CORREO SEA REALMENTE UN FORMATO DE CORREO
-        if( !userEmail.matches(emailPattern) ){
-            inputEmail.setError("Ingrese un correo eléctronico válido");
-            inputEmail.setText("");
-
-        // VERIFICAMOS SI LA CONTRASEÑA ESTÁ VACÍA O ES MUY CORTA
-        }else if( userPassword.isEmpty() || userPassword.length() < 6 ){
-            inputPassword.setError("Ingrese una contraseña válido");
-            inputPassword.setText("");
-
-        // SI TODAS LAS VERIFICACIONES SON CORRECTAS
-        }else{
-            loginProgress.setMessage("Por favor espere...");
-            loginProgress.setTitle("Verificando credenciles");
-            loginProgress.setCanceledOnTouchOutside(false);
-            loginProgress.show();
-
-            // SE REALIZA LA PETICIÓN PARA LOGEAR UN USUARIO
-            loginAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                    if( task.isSuccessful() ){
-                        loginProgress.dismiss();
-                        showSuccessfulToast("¡Bienvenido!");
-
-                        Intent mainScreen = new Intent(LoginActivity.this, MainActivity.class);
-                        mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(mainScreen);
-
-                    }else{
-                        loginProgress.dismiss();
-                        showUnsuccessfulToast(task.getException().getMessage());
-                    }
-
-                }
-            });
-
-        }
+        EmailLogin emailLogin = new EmailLogin();
+        emailLogin.performEmailLogin(inputEmail, inputPassword, LoginActivity.this);
     }
 
     // MÉTODO PARA INICIAR SESIÓN CON GOOGLE
-    private static final int RC_SIGN_IN = 101;
     private void performGoogleLogin(){
-
-        //CONFIGURANDO EL SERVICIO DE GOOGLE
-        GoogleSignInOptions googleSignIn = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string
-                        .default_web_client_id))
-                .requestEmail()
-                .build();
-
-        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(this, googleSignIn);
-
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent dataIntent){
-        super.onActivityResult(requestCode, resultCode, dataIntent);
-
-        //SE VERIFICA EL RESULTADO DEVUELTO DEL INTENT DEL LOGIN MEDIANTE GOOGLE
-        if( requestCode == RC_SIGN_IN ){
-            Task<GoogleSignInAccount> signInTask = GoogleSignIn.getSignedInAccountFromIntent(dataIntent);
-
-            try{
-                GoogleSignInAccount userAccount = signInTask.getResult(ApiException.class);
-                firebaseAuthWithGoogle(userAccount.getIdToken());
-            }catch(ApiException apiError){
-                showUnsuccessfulToast("Ha ocurrido un problema a la hora de conectarse");
-            }
-        }
-    }
-    private void firebaseAuthWithGoogle(String idToken){
-        AuthCredential userCredential = GoogleAuthProvider.getCredential(idToken, null);
-
-        loginAuth.signInWithCredential(userCredential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        if(task.isSuccessful()){
-
-                            FirebaseUser signedUser = loginAuth.getCurrentUser();
-
-                            showSuccessfulToast("¡Bienvenido!");
-
-                            Intent mainScreen = new Intent(LoginActivity.this, MainActivity.class);
-                            mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(mainScreen);
-
-                        }else{
-                            showUnsuccessfulToast("No se ha podido iniciar sesión");
-                        }
-                    }
-                });
+        GoogleLogin googleLogin = new GoogleLogin();
+        googleLogin.performGoogleLogin(LoginActivity.this);
     }
 
     // MÉTODO PARA INICIAR SESIÓN CON FACEBOOK
-    private void performFacebookLogin(){
 
-    }
-
-    // MÉTODO PARA MOSTRAR LA PANTALLA DE LOGIN CON NÚMERO TELEFONICO
-    public void phoneNumberLoginScreen (){
-        Intent phoneLoginScreen = new Intent(LoginActivity.this, PhoneLoginActivity.class);
-
-        // LLAMADO A LA PANTALLA DE LOGIN CON NÚMERO DE TELEFONO
-        startActivity(phoneLoginScreen);
-    }
-
-    
     // MÉTODO PARA MOSTRAR LA PANTALLA DE REGISTRO
     private void newUserScreen(){
         Intent registerScreen = new Intent(LoginActivity.this,RegisterActivity.class);
