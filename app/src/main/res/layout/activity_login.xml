@@ -60,7 +60,6 @@
             android:layout_height="58dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_green"
-            android:onClick="performEmailLogin"
             android:text="@string/txt_loginbutton"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -99,7 +98,6 @@
             android:clickable="true"
             android:focusable="true"
             android:minHeight="48dp"
-            android:onClick="newUserScreen"
             android:text="@string/txt_newaccount"
             android:textAlignment="center"
             android:textSize="12sp"
@@ -112,7 +110,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:onClick="guestLogin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_x_black" />
@@ -130,36 +127,33 @@
             app:layout_constraintTop_toBottomOf="@+id/txtNewAccount" />
 
         <ImageView
-            android:id="@+id/btnGoogle"
+            android:id="@+id/btnGoogleLogin"
             android:layout_width="55dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:onClick="performGoogleLogin"
             app:layout_constraintStart_toStartOf="@+id/txtOtherLoginWays"
             app:layout_constraintTop_toBottomOf="@+id/txtOtherLoginWays"
             app:srcCompat="@drawable/img_google" />
 
         <ImageView
-            android:id="@+id/btnFacebook"
+            android:id="@+id/btnFacebookLogin"
             android:layout_width="52dp"
             android:layout_height="51dp"
             android:layout_marginStart="50dp"
             android:layout_marginTop="20dp"
-            android:onClick="performFacebookLogin"
-            app:layout_constraintStart_toEndOf="@+id/btnGoogle"
+            app:layout_constraintStart_toEndOf="@+id/btnGoogleLogin"
             app:layout_constraintTop_toBottomOf="@+id/txtOtherLoginWays"
             app:srcCompat="@drawable/img_facebook" />
 
         <ImageView
-            android:id="@+id/btnPhone"
+            android:id="@+id/btnPhoneLogin"
             android:layout_width="64dp"
             android:layout_height="50dp"
             android:layout_marginStart="70dp"
             android:layout_marginTop="20dp"
-            android:onClick="phoneNumberLoginScreen"
             app:layout_constraintEnd_toEndOf="@+id/txtOtherLoginWays"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/btnFacebook"
+            app:layout_constraintStart_toEndOf="@+id/btnFacebookLogin"
             app:layout_constraintTop_toBottomOf="@+id/txtOtherLoginWays"
             app:srcCompat="@drawable/img_phone" />
 

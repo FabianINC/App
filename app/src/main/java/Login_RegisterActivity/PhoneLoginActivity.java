@@ -38,10 +38,20 @@ public class PhoneLoginActivity extends AppCompatActivity {
         btnGenerateOTP = findViewById(R.id.btnGenerateOTP);
         btnVerifyOTP = findViewById(R.id.btnVerifyOTP);
 
+        /* SE CREAN LOS LISTENERS DE CADA ACCIÓN */
+
+        btnGenerateOTP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View btnGenerateOTPClicked) {
+
+            }
+        });
+
+
     }
 
     // MÉTODO PARA GENERAR EL CÓDIGO DE VERIFICACIÓN
-    public void generateOTP(){
+    private void generateOTP(){
         final String phoneNumber = input_phoneNumber.getText().toString();
 
         //SE VERIFICA QUE EL NÚMERO NO ESTÉ VACIO
@@ -49,15 +59,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
             Toast.makeText(this, "NUMERO INCORRECTO", Toast.LENGTH_SHORT).show();
 
         }else{
-            // SE CONFIGURA EL SERVICIO DE FIREBASE
-            PhoneAuthOptions phoneOptions =
-                    PhoneAuthOptions.newBuilder(phoneAuth)
-                            .setPhoneNumber("+506" + phoneNumber) // NÚMERO A VERIFICAR
-                            .setTimeout(60L, TimeUnit.SECONDS) // TIEMPO DE DESCONEXIÓN
-                            .setActivity(this)
-                            .setCallbacks(mCallbacks)
-                            .build();
-            PhoneAuthProvider.verifyPhoneNumber(phoneOptions);
+
         }
     }
 

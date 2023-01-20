@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,8 +38,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
     // VARIABLES GLOBALES
-    EditText input_email,input_password;
-    Button btnLogin, btn;
+    EditText inputEmail,inputPassword;
+    TextView newUser, resetPassword;
+
+    ImageView guestUser;
+    Button btnLogin;
+
+    ImageView btnGoogleLogin, btnFacebookLogin, btnPhoneLogin;
 
     ProgressDialog loginProgress;
 
@@ -54,11 +60,17 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //SE IDENTIFICA CADA VARIABLE GLOBAL
-        input_email = findViewById(R.id.txtEmail);
-        input_password = findViewById(R.id.txtPassword);
+        inputEmail = findViewById(R.id.txtEmail);
+        inputPassword = findViewById(R.id.txtPassword);
+
+        newUser = findViewById(R.id.txtNewAccount);
+        guestUser = findViewById(R.id.imgGuestLogin);
+        resetPassword = findViewById(R.id.txtForgotPassword);
 
         btnLogin = findViewById(R.id.btnLogin);
-
+        btnGoogleLogin = findViewById(R.id.btnGoogleLogin);
+        btnFacebookLogin = findViewById(R.id.btnFacebookLogin);
+        btnPhoneLogin = findViewById(R.id.btnPhoneLogin);
 
         //SE CREA UN NUEVO PROGRESS DIALOG
         loginProgress = new ProgressDialog(LoginActivity.this);
@@ -66,7 +78,67 @@ public class LoginActivity extends AppCompatActivity {
         loginAuth = FirebaseAuth.getInstance();
         loginUser = loginAuth.getCurrentUser();
 
-        // SE CREAN LOS LISTENERS DE CADA BOTÓN
+        /* SE CREAN LOS LISTENERS DE CADA BOTÓN */
+        
+        // LISTENER PARA INICIO DE SESIÓN MEDIANTE CORREO - CONTRASEÑA
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View btnLoginClicked) {
+                performEmailLogin();
+            }
+        });
+        
+        // LISTENER PARA INICIO DE SESIÓN MEDIANTE GOOGLE
+        btnGoogleLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View btnGoogleLoginClicked) {
+                performGoogleLogin();
+            }
+        });
+        
+        // LISTENER PARA INICIO DE SESIÓN MEDIANTE FACEBOOK
+        btnFacebookLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View btnFacebookLoginClicked) {
+                performFacebookLogin();
+            }
+        });
+        
+        // LISTENER PARA INICIO DE SESIÓN MEDIANTE NÚMERO TELEFONICO
+        btnPhoneLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View btnPhoneNumberClicked) {
+                phoneNumberLoginScreen();
+            }
+        });
+
+        // LISTENER PARA REGISTRAR UN USUARIO
+        newUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View newUserCliked) {
+                newUserScreen();
+            }
+        });
+
+        // LISTENER PARA USAR LA APP COMO INVITADO
+        guestUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View guestUserClicked) {
+                guestLogin();
+            }
+        });
+
+        // LISTENER PARA REESTABLECER LA CONTRASEÑA
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View forgotPasswordClicked) {
+                resetPassword();
+            }
+        });
+
+
+
+
 
         /*
         sharedPreferences = getSharedPreferences("MyAppName" , MODE_PRIVATE);
@@ -157,21 +229,21 @@ public class LoginActivity extends AppCompatActivity {
     /* VARIABLE PARA VERIFICAR QUE SEA UN CORREO VALIDO */
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     // MÉTODO PARA INICIAR SESIÓN CON CONRREO Y CONTRASEÑA
-    public void performEmailLogin(View btnLoginClicked){
+    private void performEmailLogin(){
 
         // SE OBTIENEN TODOS LOS DATOS INGRESADOS
-        final String userEmail = input_email.getText().toString();
-        final String userPassword = input_password.getText().toString();
+        final String userEmail = inputEmail.getText().toString();
+        final String userPassword = inputPassword.getText().toString();
 
         // VERIFICAMOS QUE EL CORREO SEA REALMENTE UN FORMATO DE CORREO
         if( !userEmail.matches(emailPattern) ){
-            input_email.setError("Ingrese un correo eléctronico válido");
-            input_email.setText("");
+            inputEmail.setError("Ingrese un correo eléctronico válido");
+            inputEmail.setText("");
 
         // VERIFICAMOS SI LA CONTRASEÑA ESTÁ VACÍA O ES MUY CORTA
         }else if( userPassword.isEmpty() || userPassword.length() < 6 ){
-            input_password.setError("Ingrese una contraseña válido");
-            input_password.setText("");
+            inputPassword.setError("Ingrese una contraseña válido");
+            inputPassword.setText("");
 
         // SI TODAS LAS VERIFICACIONES SON CORRECTAS
         }else{
@@ -206,7 +278,7 @@ public class LoginActivity extends AppCompatActivity {
 
     // MÉTODO PARA INICIAR SESIÓN CON GOOGLE
     private static final int RC_SIGN_IN = 101;
-    public void performGoogleLogin(View btnGoogleLoginClicked ){
+    private void performGoogleLogin(){
 
         //CONFIGURANDO EL SERVICIO DE GOOGLE
         GoogleSignInOptions googleSignIn = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -262,20 +334,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // MÉTODO PARA INICIAR SESIÓN CON FACEBOOK
-    public void performFacebookLogin(View btnFacebookLoginClicked ){
+    private void performFacebookLogin(){
 
     }
 
     // MÉTODO PARA MOSTRAR LA PANTALLA DE LOGIN CON NÚMERO TELEFONICO
-    public void phoneNumberLoginScreen (View btnPhoneNumberClicked){
+    public void phoneNumberLoginScreen (){
         Intent phoneLoginScreen = new Intent(LoginActivity.this, PhoneLoginActivity.class);
 
         // LLAMADO A LA PANTALLA DE LOGIN CON NÚMERO DE TELEFONO
         startActivity(phoneLoginScreen);
     }
 
+    
     // MÉTODO PARA MOSTRAR LA PANTALLA DE REGISTRO
-    public void newUserScreen(View createAccountClicked){
+    private void newUserScreen(){
         Intent registerScreen = new Intent(LoginActivity.this,RegisterActivity.class);
 
         // LLAMADO A LA PANTALLA DE REGISTRO
@@ -283,7 +356,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // MÉTODO PARA USAR LA APP COMO 'Invitado'
-    public void guestLogin(View guestLoginClicked){
+    private void guestLogin(){
         Intent mainScreen = new Intent(LoginActivity.this, MainActivity.class);
 
         //LLAMADO A LA PANTALLA PRINCIPAL
@@ -291,7 +364,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // MÉTODO PARA REESTABLECER LA CONTRASEÑA
-    public void resetPassword(View resetPasswordClicked){
+    private void resetPassword(){
         Intent resetScreen = new Intent(LoginActivity.this, ResetPasswordActivity.class);
 
         // LLAMADO A LA PANTALLA DE REESTABLECIMIENTO DE CONTRASEÑA
