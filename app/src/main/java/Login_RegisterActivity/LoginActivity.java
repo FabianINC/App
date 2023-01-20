@@ -9,14 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.archivo.app.MainActivity;
+import com.archivo.MainMenu.MainActivity;
+
 import com.archivo.app.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -40,8 +40,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText input_email,input_password;
     Button btnLogin;
 
-    ImageView btnGoogle, btnFacebook, btnPhone;
-
     ProgressDialog loginProgress;
 
     FirebaseAuth loginAuth;
@@ -60,8 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         input_password = findViewById(R.id.txtPassword);
 
         btnLogin = findViewById(R.id.btnLogin);
-        btnGoogle = findViewById(R.id.btnGoogle);
-        btnFacebook = findViewById(R.id.btnFacebook);
 
 
         //SE CREA UN NUEVO PROGRESS DIALOG
@@ -267,6 +263,15 @@ public class LoginActivity extends AppCompatActivity {
     public void performFacebookLogin(View btnFacebookLoginClicked ){
 
     }
+
+    // MÉTODO PARA MOSTRAR LA PANTALLA DE LOGIN CON NÚMERO TELEFONICO
+    public void phoneNumberLoginScreen (View btnPhoneNumberClicked){
+        Intent phoneLoginScreen = new Intent(LoginActivity.this, PhoneLoginActivity.class);
+
+        // LLAMADO A LA PANTALLA DE LOGIN CON NÚMERO DE TELEFONO
+        startActivity(phoneLoginScreen);
+    }
+
     // MÉTODO PARA MOSTRAR LA PANTALLA DE REGISTRO
     public void newUserScreen(View createAccountClicked){
         Intent registerScreen = new Intent(LoginActivity.this,RegisterActivity.class);

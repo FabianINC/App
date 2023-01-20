@@ -1,10 +1,9 @@
 package Login_RegisterActivity;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.archivo.app.R;
+
 
 public class ResetPasswordActivity extends AppCompatActivity {
 
