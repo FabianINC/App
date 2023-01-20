@@ -3,13 +3,13 @@
     <string name="app_name">Move</string>
 
     <!--REGISTRO STRINGS -->
-    <string name="txt_registertitle">Registro</string> <!-- STRING TITULO -->
-    <string name="txt_name">Nombre</string>
-    <string name="txt_email">Email</string>
-    <string name="txt_password">Contraseña</string>
-    <string name="txt_confirm">Confirmar contraseña</string>
-    <string name="txt_button">Registrarse</string>
-    <string name="register_done">Ya estoy registrado</string>
+    <string name="txtRegisterTitle">Registro</string> <!-- STRING TITULO -->
+    <string name="txtName">Nombre</string>
+    <string name="txtRegisterEmail">Email</string>
+    <string name="txtRegisterPassword">Contraseña</string>
+    <string name="txtPasswordConfirmation">Confirmar contraseña</string>
+    <string name="txtRegisterButton">Registrarse</string>
+    <string name="txtAlredyRegistered">Ya estoy registrado</string>
 
     <!--MENU STRINGS -->
     <string name="title_activity_side_bar">sideBar</string>
@@ -24,18 +24,18 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <!-- LOGIN STRINGS -->
-    <string name="txt_loginbutton">Login</string>
-    <string name="txt_username">Nombre de usuario</string>
-    <string name="txt_google">Google</string>
-    <string name="txt_facebook">Facebook</string>
-    <string name="txt_newaccount">¿No tienes una cuenta? Registrate acá</string>
-    <string name="txt_forgotpassword">Olvidé mi contraseña</string>
-    <string name="txt_otherLoginWays">Iniciar sesión con</string>
+    <string name="txtLoginEmail">Correo</string>
+    <string name="txtLoginPassword">Correo</string>
+    <string name="txtLoginButton">Login</string>
+    <string name="txtRegisterAccount">¿No tienes una cuenta? Registrate acá</string>
+    <string name="txtForgotPassword">Olvidé mi contraseña</string>
+    <string name="txtOtherLoginWays">Iniciar sesión con</string>
 
     <!-- RESET PASSWORD STRINGS -->
-    <string name="txt_newpassword">Contraseña nueva</string>
-    <string name="txt_newpasswordconfirmation">Confirme su contraseña</string>
-    <string name="txt_btnresetpassword">Reestablecer</string>
+    <string name="txtResetEmail">Correo</string>
+    <string name="txtNewResetPassword">Contraseña nueva</string>
+    <string name="txtResetPasswordConfirmation">Confirme su contraseña</string>
+    <string name="txtResetPasswordbtn">Reestablecer</string>
 
     <!-- PHONE NUMBER LOGIN STRINGS -->
     <string name="phonenumberinstruction">Ingrese su número de teléfono</string>

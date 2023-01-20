@@ -25,8 +25,11 @@ import com.google.firebase.auth.FirebaseUser;
 public class RegisterActivity extends AppCompatActivity {
 
     // VARIABLES GLOBALES
-    EditText input_userName,input_email,input_password,input_confirmPassword;
-    Button btn_register;
+    EditText inputUserName,inputEmail,inputPassword,inputPasswordConfirmation;
+
+    Button btnRegister;
+
+    TextView existingUser;
     /* String name, email, password, passwordConfirmation; */
 
     ProgressDialog registerProgress;
@@ -43,11 +46,30 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         // SE IDENTIFICA CADA VARIABLE JAVA CON LA UI
-        input_userName = findViewById(R.id.txt_name);
-        input_email = findViewById(R.id.txt_email);
-        input_password = findViewById(R.id.txt_password);
-        input_confirmPassword = findViewById(R.id.txt_passwordConfirmation);
-        btn_register = findViewById(R.id.btn_registerAccount);
+        inputUserName = findViewById(R.id.txtName);
+        inputEmail = findViewById(R.id.txtNewEmail);
+        inputPassword = findViewById(R.id.txtRegisterPassword);
+        inputPasswordConfirmation = findViewById(R.id.txtPasswordConfirmation);
+
+        btnRegister = findViewById(R.id.btnRegisterAccount);
+
+        existingUser = findViewById(R.id.txtExistingAccount);
+
+        //LISTENER PARA REGISTRAR UN NUEVO USUARIO MEDIANTE CORREO - CONTRASEÑA
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View btnRegisterClicked) {
+                performEmailRegister();
+            }
+        });
+
+        //LISTENER PARA VOLVER A LA PANTALLA DE LOGIN
+        existingUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View alredyRegisteredClicked) {
+                alreadyRegistered();
+            }
+        });
 
         //SE CREA UN NUEVO PROGRESS DIALOG
         registerProgress = new ProgressDialog(RegisterActivity.this);
@@ -120,31 +142,31 @@ public class RegisterActivity extends AppCompatActivity {
     /* VARIABLE PARA VERIFICAR QUE SEA UN CORREO VALIDO */
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     // MÉTODO PARA REALIZAR EL REGISTRO
-    public void performEmailRegister(View btnRegisterClicked ){
+    private void performEmailRegister(){
 
         // SE OBTIENEN TODOS LOS DATOS INGRESADOS
-        final String userName = input_userName.getText().toString();
-        final String userEmail = input_email.getText().toString();
-        final String userPassword = input_password.getText().toString();
-        final String userPasswordConfirmation = input_confirmPassword.getText().toString();
+        final String userName = inputUserName.getText().toString();
+        final String userEmail = inputEmail.getText().toString();
+        final String userPassword = inputPassword.getText().toString();
+        final String userPasswordConfirmation = inputPasswordConfirmation.getText().toString();
 
         // VERIFICAMOS QUE EL CORREO SEA REALMENTE UN FORMATO DE CORREO
         if( !userEmail.matches(emailPattern) ){
-            input_email.setError("Ingrese un correo eléctronico válido");
-            input_email.setText("");
+            inputEmail.setError("Ingrese un correo eléctronico válido");
+            inputEmail.setText("");
 
         // VERIFICAMOS SI LA CONTRASEÑA ESTÁ VACÍA O ES MUY CORTA
         }else if( userPassword.isEmpty() || userPassword.length() < 6 ){
-            input_password.setError("Ingrese una contraseña válido");
-            input_password.setText("");
-            input_confirmPassword.setText("");
+            inputPassword.setError("Ingrese una contraseña válido");
+            inputPassword.setText("");
+            inputPasswordConfirmation.setText("");
 
 
         // VERIFICAMOS QUE AMBAS CONTRASEÑAN COINCIDAN
         }else if( !userPassword.equals(userPasswordConfirmation) ){
-            input_confirmPassword.setError("Las contraseñas no coinciden");
-            input_password.setText("");
-            input_confirmPassword.setText("");
+            inputPasswordConfirmation.setError("Las contraseñas no coinciden");
+            inputPassword.setText("");
+            inputPasswordConfirmation.setText("");
 
 
         // SI TODAS LAS VERIFICACIONES SON CORRECTAS
@@ -178,7 +200,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // MÉTODO PARA PASAR A LA PANTALLA DE LOGIN
-    public void alreadyRegistered(View newUserClicked){
+    public void alreadyRegistered(){
         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
     }
 
