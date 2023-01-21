@@ -14,17 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.archivo.app.R;
 
 import java.util.ArrayList;
-
+//Se crea la clase del Adapatador
+//Se le da la extension "RecyclerView.Adapter" y entre "<>" se pone la clase anidada, la cual identifico cada elemento del "reciclerview_element"
 public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAdapter.MyViewHolder> {
 
+    //Atributos
     Context context;
     ArrayList<Box> boxes;
 
+
+    //Constructor
    public B_RecyclerViewAdapter(Context context, ArrayList<Box> boxes){
 
      this.context = context;
      this.boxes = boxes;
-
 
    }
 
@@ -33,11 +36,25 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+       //Se identifica el layout que funcionara como ejemplo para crear todos los elementos
+        int id =  R.layout.reciclerview_element;
+       //El "LayoutInflater" es el responsable de encontrar el contexto al que le deseamos aplicar los cambios en este caso seria "fragment_home"
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.reciclerview_element , parent , false);
-       return new MyViewHolder(view);
+
+        boolean attached = false;
+
+        /*
+        El inflater.inflate lo que hace es poner los atributos en un ViewGroup, esto lo hace pasando el "id" del layout que funcionara como clase("recycler_element")
+        posteriormente recibira el contenedor el cual sera como un objeto de la clase que se paso previamente y finalmente se pasa un booleano que se pone false para
+        evitar que se cree dos veces el mismo conjunto de Views
+         */
+        View view = inflater.inflate(id, parent , attached);
+        //Finalmente se retorna "MyViewHolder" creado previamente con el argumento view que se explico previamente
+        return new MyViewHolder(view);
     }
 
+
+    //Este metodo es el encargado de renderizar cada objeto en su respectiva posicion
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
@@ -47,11 +64,13 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
 
     }
 
+    //Retorna la cantidad de elementos
     @Override
     public int getItemCount() {
         return boxes.size();
     }
 
+    //Se crea una clase `anidada con la extension "RecyclerView.ViewHolder" identificara cada elemento
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
 

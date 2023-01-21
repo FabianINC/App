@@ -19,11 +19,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.archivo.MainMenu.MainActivity;
 import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.*; /*SE IMPORTA TODO LO DEL FOLDER 'LoginMethods' */
 import com.archivo.app.R;
+/*
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+ */
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
