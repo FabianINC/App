@@ -19,13 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.archivo.MainMenu.MainActivity;
 import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.*; /*SE IMPORTA TODO LO DEL FOLDER 'LoginMethods' */
 import com.archivo.app.R;
-/*
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
- */
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -38,7 +31,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -224,17 +216,134 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+/* ------------------------------------ CORREO - CONTRASEÑA ------------------------------------ */
     // MÉTODO PARA INICIAR SESIÓN CON CORREO Y CONTRASEÑA
     private void performEmailLogin(){
-        EmailLogin emailLogin = new EmailLogin();
-        emailLogin.performEmailLogin(inputEmail, inputPassword, LoginActivity.this);
+
+        /* VARIABLE PARA VERIFICAR QUE SEA UN CORREO VALIDO */
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+        final String userEmail = inputEmail.getText().toString();
+        final String userPassword= inputPassword.getText().toString();
+
+        // VERIFICAMOS QUE EL CORREO SEA REALMENTE UN FORMATO DE CORREO
+        if( !userEmail.matches(emailPattern) ){
+            inputEmail.setError("Ingrese un correo eléctronico válido");
+            inputEmail.setText("");
+
+        // VERIFICAMOS SI LA CONTRASEÑA ESTÁ VACÍA O ES MUY CORTA
+        }else if( userPassword.isEmpty() || userPassword.length() < 6 ){
+            inputPassword.setError("Ingrese una contraseña válido");
+            inputPassword.setText("");
+
+        // SI TODAS LAS VERIFICACIONES SON CORRECTAS
+        }else{
+
+            // SE CREA EL PROGRESS DIALOG
+            ProgressDialog loginProgress = new ProgressDialog(LoginActivity.this);
+
+            /* FALTA ARREGLAR EL MESNAJE DEL PROGRESS DIALOG */
+            String loginProgressText = String.valueOf(R.string.loginProgressDialogText).getBytes().toString();
+            loginProgress.setMessage(loginProgressText); // MENSAJE
+            loginProgress.setTitle(R.string.loginProgressDialogTitle); // TITULO
+            loginProgress.setCanceledOnTouchOutside(false);
+            loginProgress.show();
+
+            FirebaseAuth loginAuth = FirebaseAuth.getInstance();;
+            FirebaseUser loginUser = loginAuth.getCurrentUser();;
+
+            // SE REALIZA LA PETICIÓN PARA LOGEAR UN USUARIO
+            loginAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+
+                    if( task.isSuccessful() ){
+                        loginProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
+
+                        showSuccessfulToast();
+
+                        // SE LANZA LA NUEVA ACTIVIDAD
+                        Intent mainScreen = new Intent(LoginActivity.this, MainActivity.class);
+                        mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(mainScreen);
+
+                    }else{
+                        loginProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
+                        showUnsuccessfulToast();
+                    }
+
+                }
+            });
+        }
+    }
+/* -------------------------------------------------------------------------------------------- */
+
+
+
+/* ------------------------------------------ GOOGLE ------------------------------------------ */
+    // MÉTODO PARA INICIAR SESIÓN CON GOOGLE
+    private static final int RC_SIGN_IN = 101;
+
+    private void performGoogleLogin(){
+
+        //CONFIGURANDO EL SERVICIO DE GOOGLE
+        GoogleSignInOptions googleSignIn = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string
+                        .default_web_client_id))
+                .requestEmail()
+                .build();
+        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(LoginActivity.this, googleSignIn);
+
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        //start
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    // MÉTODO PARA INICIAR SESIÓN CON GOOGLE
-    private void performGoogleLogin(){
-        GoogleLogin googleLogin = new GoogleLogin();
-        googleLogin.performGoogleLogin(LoginActivity.this);
+    protected void onActivityResult(int googleRequestCode, int googleResultCode, Intent googleIntent){
+        super.onActivityResult(googleRequestCode, googleResultCode, googleIntent);
+
+        //SE VERIFICA EL RESULTADO DEVUELTO DEL INTENT DEL LOGIN MEDIANTE GOOGLE
+        if( googleRequestCode == RC_SIGN_IN ){
+            Task<GoogleSignInAccount> signInTask = GoogleSignIn.getSignedInAccountFromIntent(googleIntent);
+
+            try{
+                GoogleSignInAccount userAccount = signInTask.getResult(ApiException.class);
+                firebaseAuthWithGoogle(userAccount.getIdToken());
+            }catch(ApiException apiError){
+                showUnsuccessfulToast();
+            }
+        }
     }
+
+    private void firebaseAuthWithGoogle(String idToken){
+        AuthCredential userCredential = GoogleAuthProvider.getCredential(idToken, null);
+
+        FirebaseAuth loginAuth = FirebaseAuth.getInstance();;
+        FirebaseUser loginUser = loginAuth.getCurrentUser();;
+
+        loginAuth.signInWithCredential(userCredential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if(task.isSuccessful()){
+
+                            FirebaseUser signedUser = loginAuth.getCurrentUser();
+                            showSuccessfulToast();
+
+                            Intent mainScreen = new Intent(LoginActivity.this, MainActivity.class);
+                            mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(mainScreen);
+
+                        }else{
+                            showUnsuccessfulToast();
+                        }
+                    }
+                });
+    }
+/* -------------------------------------------------------------------------------------------- */
+
+
 
     // MÉTODO PARA INICIAR SESIÓN CON FACEBOOK
 
@@ -263,13 +372,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // METODO PARA MOSTRAR UN "TOAST" QUE FUE EFECTIVO
-    public void showSuccessfulToast(String toastMessage){
+    public void showSuccessfulToast(){
         LayoutInflater layoutInflater = getLayoutInflater();
         View toastRegistration = layoutInflater.inflate(R.layout.toast_check,(ViewGroup) findViewById(R.id.check_toast));
 
         TextView txtMessage = toastRegistration.findViewById(R.id.txt_toast);
 
-        txtMessage.setText(toastMessage); // MENSAJE DEL TOAST
+        txtMessage.setText(R.string.toastSuccess); // MENSAJE DEL TOAST
 
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.BOTTOM, 0 , 200);
@@ -280,13 +389,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // METODO PARA MOSTRAR UN TOAST QUE FUE ERRONEO
-    public void showUnsuccessfulToast(String toastMessage){
+    public void showUnsuccessfulToast(){
         LayoutInflater layoutInflater = getLayoutInflater();
-        View toastRegistration = layoutInflater.inflate(R.layout.toast_wrong,(ViewGroup) findViewById(R.id.wrong_toast));
+        View toastRegistration = layoutInflater.inflate(R.layout.toast_unsuccess,(ViewGroup) findViewById(R.id.toastUnsuccess));
 
-        TextView txtMessage = toastRegistration.findViewById(R.id.toast_wrong);
+        TextView txtMessage = toastRegistration.findViewById(R.id.txtUnsuccessfulMessage);
 
-        txtMessage.setText(toastMessage); // MENSAJE DEL TOAST
+        txtMessage.setText(R.string.toastUnsuccess); // MENSAJE DEL TOAST
 
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.BOTTOM, 0 , 200);

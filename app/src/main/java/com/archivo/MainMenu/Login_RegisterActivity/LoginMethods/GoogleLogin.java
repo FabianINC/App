@@ -1,7 +1,5 @@
 package com.archivo.MainMenu.Login_RegisterActivity.LoginMethods;
 
-import static android.provider.Settings.System.getString;
-import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Intent;
 
@@ -44,7 +42,7 @@ public class GoogleLogin extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    protected void onGoogleActivityResult(int requestCode, int resultCode, Intent dataIntent){
+    protected void onActivityResult(int requestCode, int resultCode, Intent dataIntent){
         super.onActivityResult(requestCode, resultCode, dataIntent);
 
         //SE VERIFICA EL RESULTADO DEVUELTO DEL INTENT DEL LOGIN MEDIANTE GOOGLE

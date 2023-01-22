@@ -51,4 +51,12 @@
     <string name="facebook_client_token">56789</string>
 
 
+    <!-- TOAST STRINGS -->
+    <string name="toastUnsuccess">Lo sentimos, no hemos podido realizar esta operación</string>
+    <string name="toastSuccess">La operación se completó con éxito</string>
+
+    <!-- PROGRESS DIALOG STRINGS -->
+    <string name="loginProgressDialogTitle">Verificando credenciles</string>
+    <string name="loginProgressDialogText">Por favor espere...</string>
+
 </resources>

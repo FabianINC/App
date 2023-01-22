@@ -183,7 +183,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     if( task.isSuccessful() ){
                         registerProgress.dismiss();
-                        showSuccessfulToast("¡Te has registrado exitosamente!");
+                        showSuccessfulToast();
 
                         Intent loginScreen = new Intent(RegisterActivity.this, LoginActivity.class);
                         loginScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -191,7 +191,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }else{
                         registerProgress.dismiss();
-                        showUnsuccessfulToast(task.getException().getMessage());
+                        showUnsuccessfulToast();
                     }
                 }
             });
@@ -205,13 +205,13 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // METODO PARA MOSTRAR UN "TOAST" QUE FUE EFECTIVO
-    public void showSuccessfulToast(String toastMessage){
+    public void showSuccessfulToast(){
         LayoutInflater layoutInflater = getLayoutInflater();
         View toastRegistration = layoutInflater.inflate(R.layout.toast_check,(ViewGroup) findViewById(R.id.check_toast));
 
         TextView txtMessage = toastRegistration.findViewById(R.id.txt_toast);
 
-        txtMessage.setText(toastMessage); // MENSAJE DEL TOAST
+        txtMessage.setText(R.string.toastSuccess); // MENSAJE DEL TOAST
 
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.BOTTOM, 0 , 200);
@@ -222,13 +222,13 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     // METODO PARA MOSTRAR UN "TOAST" QUE FUE ERRONEO
-    public void showUnsuccessfulToast(String toastMessage){
+    public void showUnsuccessfulToast(){
         LayoutInflater layoutInflater = getLayoutInflater();
-        View toastRegistration = layoutInflater.inflate(R.layout.toast_wrong,(ViewGroup) findViewById(R.id.wrong_toast));
+        View toastRegistration = layoutInflater.inflate(R.layout.toast_unsuccess,(ViewGroup) findViewById(R.id.toastUnsuccess));
 
-        TextView txtMessage = toastRegistration.findViewById(R.id.toast_wrong);
+        TextView txtMessage = toastRegistration.findViewById(R.id.txtUnsuccessfulMessage);
 
-        txtMessage.setText(toastMessage); // MENSAJE DEL TOAST
+        txtMessage.setText(R.string.toastUnsuccess); // MENSAJE DEL TOAST
 
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.BOTTOM, 0 , 200);
