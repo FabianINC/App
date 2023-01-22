@@ -25,18 +25,18 @@ import com.google.firebase.auth.FirebaseUser;
 public class RegisterActivity extends AppCompatActivity {
 
     // VARIABLES GLOBALES
-    EditText inputUserName,inputEmail,inputPassword,inputPasswordConfirmation;
+    private EditText inputUserName,inputEmail,inputPassword,inputPasswordConfirmation;
 
-    Button btnRegister;
+    private Button btnRegister;
 
-    TextView existingUser;
+    private TextView existingUser;
     /* String name, email, password, passwordConfirmation; */
 
-    ProgressDialog registerProgress;
+    private ProgressDialog registerProgress;
 
 
-    FirebaseAuth registerAuth;
-    FirebaseUser registerUser;
+    private FirebaseAuth registerAuth;
+    private FirebaseUser registerUser;
 
     //private static final String URL1 = "http://152.231.173.118/usuarios/save.php";
 

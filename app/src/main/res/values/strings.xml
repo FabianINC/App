@@ -25,16 +25,16 @@
 
     <!-- LOGIN STRINGS -->
     <string name="txtLoginEmail">Correo</string>
-    <string name="txtLoginPassword">Correo</string>
+    <string name="txtLoginPassword">Contraseña</string>
     <string name="txtLoginButton">Login</string>
     <string name="txtRegisterAccount">¿No tienes una cuenta? Registrate acá</string>
     <string name="txtForgotPassword">Olvidé mi contraseña</string>
     <string name="txtOtherLoginWays">Iniciar sesión con</string>
 
     <!-- RESET PASSWORD STRINGS -->
+    <string name="txtResetTitle">Reestablecer mi contraseña</string>
+    <string name="txtResetInstructions">Ingrese su correo electrónico</string>
     <string name="txtResetEmail">Correo</string>
-    <string name="txtNewResetPassword">Contraseña nueva</string>
-    <string name="txtResetPasswordConfirmation">Confirme su contraseña</string>
     <string name="txtResetPasswordbtn">Reestablecer</string>
 
     <!-- PHONE NUMBER LOGIN STRINGS -->

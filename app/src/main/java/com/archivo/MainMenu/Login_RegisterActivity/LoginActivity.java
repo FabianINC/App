@@ -37,13 +37,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
     // VARIABLES GLOBALES
-    EditText inputEmail,inputPassword;
-    TextView newUser, resetPassword;
+    private EditText inputEmail,inputPassword;
+    private TextView newUser, resetPassword;
 
-    ImageView guestUser;
-    Button btnLogin;
+    private ImageView guestUser;
+    private Button btnLogin;
 
-    ImageView btnGoogleLogin, btnFacebookLogin, btnPhoneLogin;
+    private ImageView btnGoogleLogin, btnFacebookLogin, btnPhoneLogin;
 
     //String  email , password, name , apiKey;
     //SharedPreferences sharedPreferences;
@@ -276,11 +276,11 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
-/* -------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
 
 
 
-/* ------------------------------------------ GOOGLE ------------------------------------------ */
+/* ------------------------------------------- GOOGLE ------------------------------------------ */
     // MÉTODO PARA INICIAR SESIÓN CON GOOGLE
     private static final int RC_SIGN_IN = 101;
 
@@ -341,11 +341,14 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-/* -------------------------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------------------------- */
 
 
-
+/* ------------------------------------------ FACEBOOK ----------------------------------------- */
     // MÉTODO PARA INICIAR SESIÓN CON FACEBOOK
+
+/* --------------------------------------------------------------------------------------------- */
+
 
     // MÉTODO PARA MOSTRAR LA PANTALLA DE REGISTRO
     private void newUserScreen(){
