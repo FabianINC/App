@@ -1,5 +1,6 @@
 package com.archivo.MainMenu.menu_fragments.profile;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,10 @@ import java.util.List;
 
 public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHolder> {
 
-    private List<SliderItem> sliderItems;
+    private final List<SliderItem> sliderItems;
     private ViewPager2 viewPager2;
 
-    public SlideAdapter(List<SliderItem> sliderItems, ViewPager2 viewPager2) {
+    SlideAdapter(List<SliderItem> sliderItems, ViewPager2 viewPager2) {
         this.sliderItems = sliderItems;
         this.viewPager2 = viewPager2;
     }
@@ -39,6 +40,11 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
     public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
 
         holder.setImageView(sliderItems.get(position));
+        if(position == sliderItems.size() - 2){
+
+            viewPager2.post(runnable);
+
+        }
 
     }
 
@@ -47,25 +53,37 @@ public class SlideAdapter extends RecyclerView.Adapter<SlideAdapter.SliderViewHo
         return sliderItems.size();
     }
 
-    class SliderViewHolder extends  RecyclerView.ViewHolder{
+    static class SliderViewHolder extends  RecyclerView.ViewHolder{
 
-        private  RoundedImageView imageView;
+
+        private final RoundedImageView imageView;
 
         SliderViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.imageView = itemView.findViewById(R.id.imageSlide);
+
+            imageView = itemView.findViewById(R.id.imageSlide);
+
         }
 
         void setImageView(SliderItem sliderItem){
 
-            imageView.setImageResource(sliderItem.getImage());
 
+            imageView.setImageResource(sliderItem.getImage());
 
         }
 
 
     }
 
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+
+            sliderItems.addAll(sliderItems);
+            notifyDataSetChanged();
+
+        }
+    };
 
 
 
