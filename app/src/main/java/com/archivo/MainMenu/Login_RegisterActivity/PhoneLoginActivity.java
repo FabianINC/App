@@ -3,6 +3,7 @@ package com.archivo.MainMenu.Login_RegisterActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -67,9 +68,20 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
         // SI TODAS LAS VERIFICACIONES SON CORRECTAS SE INICIA OTRA ACTIVIDAD
         }else{
+            ProgressDialog loginProgress = new ProgressDialog(PhoneLoginActivity.this);
+
+            /* FALTA ARREGLAR EL MESNAJE DEL PROGRESS DIALOG */
+            String loginProgressText = String.valueOf(R.string.loginProgressDialogText).getBytes().toString();
+            loginProgress.setMessage(loginProgressText); // MENSAJE
+            loginProgress.setTitle(R.string.loginProgressDialogTitle); // TITULO
+            loginProgress.setCanceledOnTouchOutside(false);
+            loginProgress.show();
 
             //CONFIGURANDO EL SERVICIO TELEFONICO
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
+
+
+
                     "+506" + userPhoneNumber,
                     60, TimeUnit.SECONDS,
                     PhoneLoginActivity.this,
@@ -87,9 +99,12 @@ public class PhoneLoginActivity extends AppCompatActivity {
                         @Override
                         public void onCodeSent(@NonNull String codeOTP, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                             //SE LANZA UNA NUEVA ACTIVIDAD
+
                             Intent verifyOTPScreen = new Intent(PhoneLoginActivity.this, PhoneLoginVerificationActivity.class);
                             verifyOTPScreen.putExtra("userPhoneNumber", userPhoneNumber); // SE ENVÍA EL NÚMERO
                             verifyOTPScreen.putExtra("codeOTP", codeOTP);// SE ENVÍA EL CÓDIGO OTP
+
+                            loginProgress.dismiss();
                             startActivity(verifyOTPScreen);
                         }
                     });
