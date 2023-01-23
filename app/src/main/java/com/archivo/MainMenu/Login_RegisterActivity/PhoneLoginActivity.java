@@ -77,21 +77,16 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                         // SI LA VERIFICACIÓN ES CORRECTA
                         @Override
-                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                            Toast.makeText(PhoneLoginActivity.this, "Completed", Toast.LENGTH_SHORT).show();
-                        }
+                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {}
 
                         // SI LA VERIFICACION ES INCORRECTA
                         @Override
-                        public void onVerificationFailed(@NonNull FirebaseException e) {
-                            Toast.makeText(PhoneLoginActivity.this, "Failed, internet", Toast.LENGTH_SHORT).show();
-                        }
+                        public void onVerificationFailed(@NonNull FirebaseException e) {}
 
                         // ACCIONES A REALIZAR DESPUÉS DE QUE SE ENVÍA EL CÓDIGO
                         @Override
                         public void onCodeSent(@NonNull String codeOTP, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                            Toast.makeText(PhoneLoginActivity.this, "CodeSent", Toast.LENGTH_SHORT).show();
-
+                            //SE LANZA UNA NUEVA ACTIVIDAD
                             Intent verifyOTPScreen = new Intent(PhoneLoginActivity.this, PhoneLoginVerificationActivity.class);
                             verifyOTPScreen.putExtra("userPhoneNumber", userPhoneNumber); // SE ENVÍA EL NÚMERO
                             verifyOTPScreen.putExtra("codeOTP", codeOTP);// SE ENVÍA EL CÓDIGO OTP
@@ -99,7 +94,6 @@ public class PhoneLoginActivity extends AppCompatActivity {
                         }
                     });
         }
-
     }
 
 }

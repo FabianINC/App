@@ -89,7 +89,7 @@ public class PhoneLoginVerificationActivity extends AppCompatActivity {
 
         //SE VERIFICA QUE NO ESTÉ VACÍO O QUE NO SEA MÁS CORTO
         if( inputOTP.equals("") || (inputOTP.length() != 6)){
-            Toast.makeText(this, R.string.toastWrongCodeInput, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, R.string.toastWrongCodeInput, Toast.LENGTH_SHORT).show();
 
         // SI LA VERIFICACIÓN ES CORRECTA SE PROCEDE A VERIFICAR EL CODIGO ENVIADO
         }else{
@@ -228,15 +228,11 @@ public class PhoneLoginVerificationActivity extends AppCompatActivity {
 
                     // SI LA VERIFICACIÓN ES CORRECTA
                     @Override
-                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                        Toast.makeText(PhoneLoginVerificationActivity.this, "Completed", Toast.LENGTH_SHORT).show();
-                    }
+                    public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {}
 
                     // SI LA VERIFICACION ES INCORRECTA
                     @Override
-                    public void onVerificationFailed(@NonNull FirebaseException e) {
-                        Toast.makeText(PhoneLoginVerificationActivity.this, "Failed, internet", Toast.LENGTH_SHORT).show();
-                    }
+                    public void onVerificationFailed(@NonNull FirebaseException e) {}
 
                     // ACCIONES A REALIZAR DESPUÉS DE QUE SE ENVÍA EL CÓDIGO
                     @Override
