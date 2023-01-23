@@ -7,7 +7,7 @@
     tools:context="com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgMessage"
         android:layout_width="174dp"
         android:layout_height="204dp"
         android:layout_marginTop="30dp"
@@ -21,17 +21,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="@string/txt_phonenumber"
+        android:text="@string/phonenumberinstruction"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/imgMessage"
         app:layout_constraintHorizontal_bias="0.512"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintStart_toStartOf="@+id/imgMessage"
+        app:layout_constraintTop_toBottomOf="@+id/imgMessage" />
 
     <TextView
-        android:id="@+id/txtPhoneInstructions"
+        android:id="@+id/txtInstructions"
         android:layout_width="297dp"
         android:layout_height="42dp"
         android:layout_marginTop="10dp"
@@ -43,9 +43,10 @@
 
     <Button
         android:id="@+id/btnGenerateOTP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="222dp"
+        android:layout_height="49dp"
         android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_gray"
         android:text="@string/btnGenerateOTP"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,15 +58,16 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="307dp"
-        android:layout_height="39dp"
+        android:layout_width="286dp"
+        android:layout_height="59dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/field"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPhoneInstructions">
+        app:layout_constraintTop_toBottomOf="@+id/txtInstructions">
 
         <TextView
             android:id="@+id/txtAreaCode"
@@ -73,25 +75,20 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_costaricaflag"
             android:drawablePadding="5dp"
+            android:paddingLeft="20dp"
             android:text="@string/txtAreaCode"
-            android:textAlignment="viewStart"
-            android:textSize="16sp"
+            android:textAlignment="viewEnd"
+            android:textSize="24sp"
             android:textStyle="bold" />
-
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0" />
 
         <EditText
             android:id="@+id/txtPhoneNumber"
-            android:layout_width="226dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/txt_phonenumber"
             android:inputType="phone"
-            android:textAlignment="textStart"
-            android:textSize="16sp" />
+            android:textAlignment="center"
+            android:textSize="24sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

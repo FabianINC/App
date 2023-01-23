@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginVerificationActivity">
+
+    <ImageView
+        android:id="@+id/imgMessageSent"
+        android:layout_width="179dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/img_messagesent" />
+
+    <TextView
+        android:id="@+id/txtMessageInstructionsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/txtOTPVerification"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imgMessageSent"
+        app:layout_constraintStart_toStartOf="@+id/imgMessageSent"
+        app:layout_constraintTop_toBottomOf="@+id/imgMessageSent" />
+
+    <TextView
+        android:id="@+id/txtMessageInstructions"
+        android:layout_width="271dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/txtOTPInstructions"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/txtMessageInstructionsTitle"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/txtMessageInstructionsTitle"
+        app:layout_constraintTop_toBottomOf="@+id/txtMessageInstructionsTitle" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMessageInstructions">
+
+        <EditText
+            android:id="@+id/txtCode1"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:background="@drawable/bg_box"
+            android:ems="10"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/txtCode2"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/bg_box"
+            android:ems="10"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/txtCode3"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/bg_box"
+            android:ems="10"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/txtCode4"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/bg_box"
+            android:ems="10"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/txtCode5"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/bg_box"
+            android:ems="10"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/txtCode6"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/bg_box"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtResendOTP"
+        android:layout_width="360dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/txtResendOTP"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <Button
+        android:id="@+id/btnVerifyOTP"
+        android:layout_width="235dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="150dp"
+        android:text="@string/btnVerifyOTP"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/txtResendOTP"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/txtResendOTP"
+        app:layout_constraintTop_toBottomOf="@+id/txtResendOTP" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

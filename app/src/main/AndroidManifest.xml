@@ -15,6 +15,13 @@
         android:theme="@style/Theme.App"
         tools:targetApi="31">
         <activity
+            android:name="com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginVerificationActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name="com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginActivity"
             android:exported="false">
             <meta-data

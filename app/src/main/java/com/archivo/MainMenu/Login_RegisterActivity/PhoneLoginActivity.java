@@ -1,5 +1,6 @@
 package com.archivo.MainMenu.Login_RegisterActivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,9 +11,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.archivo.app.R;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
-import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
@@ -20,11 +20,11 @@ import java.util.concurrent.TimeUnit;
 public class PhoneLoginActivity extends AppCompatActivity {
 
     // VARIABLES GLOBALES
-    EditText input_phoneNumber, input_OTP;
+    private EditText inputPhoneNumber;
+    private Button btnGenerateOTP;
 
-    Button btnGenerateOTP, btnVerifyOTP;
 
-    FirebaseAuth phoneAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,48 +32,74 @@ public class PhoneLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phone_login);
 
         //SE IDENTIFICA CADA VARIABLE GLOBAL
-        input_phoneNumber = findViewById(R.id.txtPhoneNumber);
-        //input_OTP = findViewById(R.id.txtOTP);
-
+        inputPhoneNumber = findViewById(R.id.txtPhoneNumber);
         btnGenerateOTP = findViewById(R.id.btnGenerateOTP);
-        //btnVerifyOTP = findViewById(R.id.btnVerifyOTP);
+
 
         /* SE CREAN LOS LISTENERS DE CADA ACCIÓN */
-
         btnGenerateOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View btnGenerateOTPClicked) {
-
+                performPhoneNumberLogin();
             }
         });
 
 
     }
 
-    // MÉTODO PARA GENERAR EL CÓDIGO DE VERIFICACIÓN
-    private void generateOTP(){
-        final String phoneNumber = input_phoneNumber.getText().toString();
+    // MÉTODO PARA REALIZAR EL LOGIN MEDIANTE NÚMERO TELEFONICO (PARTE 1)
+    public void performPhoneNumberLogin(){
 
-        //SE VERIFICA QUE EL NÚMERO NO ESTÉ VACIO
-        if( phoneNumber.isEmpty() ){
-            Toast.makeText(this, "NUMERO INCORRECTO", Toast.LENGTH_SHORT).show();
+        // SE OBTIENE EL DATO INGRESADO
+        final String userPhoneNumber = inputPhoneNumber.getText().toString();
 
+        // SE VERIFICA QUE EL DATO NO ESTÉ VACIO
+        if(userPhoneNumber.equals("")) {
+            //inputPhoneNumber.setError(R.string.txtWrongNumberInput);
+
+        //SE VERIFICA QUE EL NÚMERO INGRESADO SEA CORRECTO ( LIBERTY - CLARO -  KOLBI )
+        }else if( !(userPhoneNumber.startsWith("6")) && !(userPhoneNumber.startsWith("7")) && !(userPhoneNumber.startsWith("8")) ){
+            //inputPhoneNumber.setError(R.string.txtWrongNumberInput);
+
+        // SE VERIFICA LA LONGUITUD DEL NÚMERO
+        }else if( userPhoneNumber.length() != 8){
+            //inputPhoneNumber.setError(R.string.txtWrongNumberInput);
+
+        // SI TODAS LAS VERIFICACIONES SON CORRECTAS SE INICIA OTRA ACTIVIDAD
         }else{
 
+            //CONFIGURANDO EL SERVICIO TELEFONICO
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                    "+506" + userPhoneNumber,
+                    60, TimeUnit.SECONDS,
+                    PhoneLoginActivity.this,
+                    new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+                        // SI LA VERIFICACIÓN ES CORRECTA
+                        @Override
+                        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                            Toast.makeText(PhoneLoginActivity.this, "Completed", Toast.LENGTH_SHORT).show();
+                        }
+
+                        // SI LA VERIFICACION ES INCORRECTA
+                        @Override
+                        public void onVerificationFailed(@NonNull FirebaseException e) {
+                            Toast.makeText(PhoneLoginActivity.this, "Failed, internet", Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ACCIONES A REALIZAR DESPUÉS DE QUE SE ENVÍA EL CÓDIGO
+                        @Override
+                        public void onCodeSent(@NonNull String codeOTP, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                            Toast.makeText(PhoneLoginActivity.this, "CodeSent", Toast.LENGTH_SHORT).show();
+
+                            Intent verifyOTPScreen = new Intent(PhoneLoginActivity.this, PhoneLoginVerificationActivity.class);
+                            verifyOTPScreen.putExtra("userPhoneNumber", userPhoneNumber); // SE ENVÍA EL NÚMERO
+                            verifyOTPScreen.putExtra("codeOTP", codeOTP);// SE ENVÍA EL CÓDIGO OTP
+                            startActivity(verifyOTPScreen);
+                        }
+                    });
         }
-    }
-
-
-    public void performPhoneNumberLogin(View verifyNumberClicked){
 
     }
 
-    // AL PRESIONAR LA TECLÁ ATRAS SE DEVUELVE A LA PANTALLA DE LOGIN
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        Intent loginScreen = new Intent(PhoneLoginActivity.this, LoginActivity.class);
-        startActivity(loginScreen);
-    }
 }
