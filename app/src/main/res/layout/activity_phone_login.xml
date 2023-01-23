@@ -6,87 +6,92 @@
     android:layout_height="match_parent"
     tools:context="com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="174dp"
+        android:layout_height="204dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_message" />
+
     <TextView
-        android:id="@+id/phoneNumberInstruction"
+        android:id="@+id/txtPhoneNumberInstruction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="30dp"
         android:text="@string/txt_phonenumber"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <EditText
-        android:id="@+id/txtPhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/txt_phonenumber"
-        android:inputType="phone"
+    <TextView
+        android:id="@+id/txtPhoneInstructions"
+        android:layout_width="297dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/txtPhoneInstructions"
         android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/phoneNumberInstruction"
-        app:layout_constraintTop_toBottomOf="@+id/phoneNumberInstruction" />
+        app:layout_constraintEnd_toEndOf="@+id/txtPhoneNumberInstruction"
+        app:layout_constraintStart_toStartOf="@+id/txtPhoneNumberInstruction"
+        app:layout_constraintTop_toBottomOf="@+id/txtPhoneNumberInstruction" />
 
     <Button
         android:id="@+id/btnGenerateOTP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="475dp"
+        android:layout_marginBottom="24dp"
         android:text="@string/btnGenerateOTP"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/txtOTP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:hint="@string/txt_OTP"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/txtOTPInstruction"
-        app:layout_constraintTop_toBottomOf="@+id/txtOTPInstruction" />
-
-    <TextView
-        android:id="@+id/txtOTPInstruction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/txtOTPVerification"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.345"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGenerateOTP" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.564" />
 
-    <Button
-        android:id="@+id/btnVerifyOTP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="205dp"
-        android:text="@string/btnVerifyOTP"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="307dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPhoneInstructions">
+
+        <TextView
+            android:id="@+id/txtAreaCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_costaricaflag"
+            android:drawablePadding="5dp"
+            android:text="@string/txtAreaCode"
+            android:textAlignment="viewStart"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0" />
+
+        <EditText
+            android:id="@+id/txtPhoneNumber"
+            android:layout_width="226dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/txt_phonenumber"
+            android:inputType="phone"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

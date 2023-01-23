@@ -207,7 +207,7 @@ public class RegisterActivity extends AppCompatActivity {
     // METODO PARA MOSTRAR UN "TOAST" QUE FUE EFECTIVO
     public void showSuccessfulToast(){
         LayoutInflater layoutInflater = getLayoutInflater();
-        View toastRegistration = layoutInflater.inflate(R.layout.toast_check,(ViewGroup) findViewById(R.id.check_toast));
+        View toastRegistration = layoutInflater.inflate(R.layout.toast_success,(ViewGroup) findViewById(R.id.check_toast));
 
         TextView txtMessage = toastRegistration.findViewById(R.id.txt_toast);
 

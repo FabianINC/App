@@ -17,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.archivo.MainMenu.MainActivity;
-import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.*; /*SE IMPORTA TODO LO DEL FOLDER 'LoginMethods' */
 import com.archivo.app.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -88,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         btnFacebookLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View btnFacebookLoginClicked) {
-                //performFacebookLogin();
+                performFacebookLogin();
             }
         });
         
@@ -96,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
         btnPhoneLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View btnPhoneNumberClicked) {
-                //phoneNumberLoginScreen();
+                performPhoneLogin();
             }
         });
 
@@ -228,12 +227,12 @@ public class LoginActivity extends AppCompatActivity {
 
         // VERIFICAMOS QUE EL CORREO SEA REALMENTE UN FORMATO DE CORREO
         if( !userEmail.matches(emailPattern) ){
-            inputEmail.setError("Ingrese un correo eléctronico válido");
+            //inputEmail.setError(R.string.txtWrongEmailInput);
             inputEmail.setText("");
 
         // VERIFICAMOS SI LA CONTRASEÑA ESTÁ VACÍA O ES MUY CORTA
         }else if( userPassword.isEmpty() || userPassword.length() < 6 ){
-            inputPassword.setError("Ingrese una contraseña válido");
+            //inputPassword.setError(R.string.txtWrongPasswordInput);
             inputPassword.setText("");
 
         // SI TODAS LAS VERIFICACIONES SON CORRECTAS
@@ -344,10 +343,23 @@ public class LoginActivity extends AppCompatActivity {
 /* --------------------------------------------------------------------------------------------- */
 
 
+
 /* ------------------------------------------ FACEBOOK ----------------------------------------- */
     // MÉTODO PARA INICIAR SESIÓN CON FACEBOOK
+    private void performFacebookLogin(){
 
+    }
 /* --------------------------------------------------------------------------------------------- */
+
+
+
+/* ------------------------------------- NÚMERO DE TELEFONO ------------------------------------ */
+    // MÉTODO PARA INICIAR SESIÓN CON FACEBOOK
+    private void performPhoneLogin(){
+
+    }
+/* --------------------------------------------------------------------------------------------- */
+
 
 
     // MÉTODO PARA MOSTRAR LA PANTALLA DE REGISTRO
@@ -377,7 +389,7 @@ public class LoginActivity extends AppCompatActivity {
     // METODO PARA MOSTRAR UN "TOAST" QUE FUE EFECTIVO
     public void showSuccessfulToast(){
         LayoutInflater layoutInflater = getLayoutInflater();
-        View toastRegistration = layoutInflater.inflate(R.layout.toast_check,(ViewGroup) findViewById(R.id.check_toast));
+        View toastRegistration = layoutInflater.inflate(R.layout.toast_success,(ViewGroup) findViewById(R.id.check_toast));
 
         TextView txtMessage = toastRegistration.findViewById(R.id.txt_toast);
 

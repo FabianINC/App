@@ -37,9 +37,12 @@
     <string name="txtResetEmail">Correo</string>
     <string name="txtResetPasswordbtn">Reestablecer</string>
 
+
     <!-- PHONE NUMBER LOGIN STRINGS -->
+    <string name ="txtPhoneInstructions">Le enviaremos un código de verificación al número de telefono especificado</string>
     <string name="phonenumberinstruction">Ingrese su número de teléfono</string>
-    <string name="txt_phonenumber">Número de teléfono</string>
+    <string name="txtAreaCode">+506</string>
+    <string name="txt_phonenumber">Ingrese su número de teléfono</string>
     <string name="btnGenerateOTP">Verificar mi número</string>
     <string name="txtOTPVerification">Ingrese su código de verificación</string>
     <string name="txt_OTP">Código de verificación</string>
@@ -54,9 +57,15 @@
     <!-- TOAST STRINGS -->
     <string name="toastUnsuccess">Lo sentimos, no hemos podido realizar esta operación</string>
     <string name="toastSuccess">La operación se completó con éxito</string>
+    <string name="toastEmailSend">Se han enviado las instrucciones de reestablecimiento, revisa tu correo</string>
+    <string name="toastErrorOnReset">Lo sentimos, no hemos podido realizar esta operación</string>
 
     <!-- PROGRESS DIALOG STRINGS -->
     <string name="loginProgressDialogTitle">Verificando credenciles</string>
     <string name="loginProgressDialogText">Por favor espere...</string>
+
+    <!-- INPUT ERRORS STRINGS -->
+    <string name="txtWrongEmailInput">Ingrese un correo eléctronico válido</string>
+    <string name="txtWrongPasswordInput">Ingrese una contraseña válida</string>
 
 </resources>

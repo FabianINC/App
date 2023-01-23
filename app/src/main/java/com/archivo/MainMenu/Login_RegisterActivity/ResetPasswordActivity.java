@@ -51,7 +51,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         // VERIFICAMOS QUE EL CORREO SEA REALMENTE UN FORMATO DE CORREO
         if( !userEmail.matches(emailPattern) ){
-            inputEmail.setError("Ingrese un correo eléctronico válido");
+            //inputEmail.setError(R.string.txtWrongEmailInput);
             inputEmail.setText("");
 
         }else {
@@ -64,14 +64,15 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if(task.isSuccessful()){
-                                Toast.makeText(ResetPasswordActivity.this, "Se ha envíado un correo de reestablecimiento a la dirección proporcionada", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ResetPasswordActivity.this, R.string.toastEmailSend, Toast.LENGTH_SHORT).show();
 
                                 // SE LANZA LA NUEVA ACTIVIDAD
                                 Intent loginScreen = new Intent(ResetPasswordActivity.this, LoginActivity.class);
                                 startActivity(loginScreen);
 
+
                             }else{
-                                Toast.makeText(ResetPasswordActivity.this, "Error " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ResetPasswordActivity.this, R.string.toastErrorOnReset, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
