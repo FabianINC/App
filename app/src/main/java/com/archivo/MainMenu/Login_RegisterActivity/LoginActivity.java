@@ -356,6 +356,9 @@ public class LoginActivity extends AppCompatActivity {
 /* ------------------------------------- NÚMERO DE TELEFONO ------------------------------------ */
     // MÉTODO PARA INICIAR SESIÓN CON FACEBOOK
     private void performPhoneLogin(){
+        Intent phoneLoginScreen = new Intent(LoginActivity.this, PhoneLoginActivity.class);
+        phoneLoginScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(phoneLoginScreen);
 
     }
 /* --------------------------------------------------------------------------------------------- */

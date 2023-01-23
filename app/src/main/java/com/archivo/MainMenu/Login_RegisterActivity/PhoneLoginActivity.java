@@ -33,10 +33,10 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
         //SE IDENTIFICA CADA VARIABLE GLOBAL
         input_phoneNumber = findViewById(R.id.txtPhoneNumber);
-        input_OTP = findViewById(R.id.txtOTP);
+        //input_OTP = findViewById(R.id.txtOTP);
 
         btnGenerateOTP = findViewById(R.id.btnGenerateOTP);
-        btnVerifyOTP = findViewById(R.id.btnVerifyOTP);
+        //btnVerifyOTP = findViewById(R.id.btnVerifyOTP);
 
         /* SE CREAN LOS LISTENERS DE CADA ACCIÓN */
 
@@ -68,4 +68,12 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
     }
 
+    // AL PRESIONAR LA TECLÁ ATRAS SE DEVUELVE A LA PANTALLA DE LOGIN
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent loginScreen = new Intent(PhoneLoginActivity.this, LoginActivity.class);
+        startActivity(loginScreen);
+    }
 }
