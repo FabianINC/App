@@ -15,9 +15,9 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
-    ViewPager2 viewPager2;
-    ViewPageAdapter viewPageAdapter;
-    BottomNavigationView bottomNavigationView;
+    private ViewPager2 viewPager2;
+    private ViewPageAdapter viewPageAdapter;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,5 +70,16 @@ public class MainActivity extends AppCompatActivity {
                 super.onPageSelected(position);
             }
         });
+
+        //El codigo de abajo desactiva el viewPager2
+        //viewPager2.setUserInputEnabled(false);
+
     }
+
+    public ViewPager2 getViewPager(){
+
+        return viewPager2;
+
+    }
+
 }

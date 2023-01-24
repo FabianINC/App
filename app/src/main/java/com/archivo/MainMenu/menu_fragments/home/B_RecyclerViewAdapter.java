@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.archivo.app.R;
 
 import java.util.ArrayList;
@@ -19,8 +21,22 @@ import java.util.ArrayList;
 public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAdapter.MyViewHolder> {
 
     //Atributos
-    Context context;
-    ArrayList<Box> boxes;
+    private Context context;
+    private ArrayList<Box> boxes;
+    private OnItemClickListener mListener;
+
+
+    public interface OnItemClickListener{
+
+        void onAnimationClick(int position, LottieAnimationView heart);
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+
+        mListener = listener;
+
+    }
 
 
     //Constructor
@@ -50,7 +66,7 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
          */
         View view = inflater.inflate(id, parent , attached);
         //Finalmente se retorna "MyViewHolder" creado previamente con el argumento view que se explico previamente
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, mListener);
     }
 
 
@@ -70,23 +86,49 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
         return boxes.size();
     }
 
+
+
+
     //Se crea una clase `anidada con la extension "RecyclerView.ViewHolder" identificara cada elemento
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-
+        boolean like;
         ImageView imageView;
         TextView tvLocation,tvPrice;
+        LottieAnimationView heart;
 
-         public MyViewHolder(@NonNull View itemView){
+         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener){
              super(itemView);
 
              imageView = itemView.findViewById(R.id.recicler_img);
              tvLocation = itemView.findViewById(R.id.txt_Location);
              tvPrice = itemView.findViewById(R.id.txt_Price);
+             heart = itemView.findViewById(R.id.animation);
+             like = false;
+
+
+             heart.setOnClickListener(new View.OnClickListener() {
+                 @Override
+                 public void onClick(View view) {
+
+                     if(listener != null){
+
+                           int position = getBindingAdapterPosition();
+                           if(position != RecyclerView.NO_POSITION){
+
+                               listener.onAnimationClick(position, heart);
+
+                           }
+
+
+                     }
+
+                 }
+             });
 
 
          }
 
-    }
 
+    }
 }

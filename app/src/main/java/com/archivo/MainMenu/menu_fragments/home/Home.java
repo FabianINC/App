@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.archivo.app.R;
 
 import java.util.ArrayList;
@@ -19,10 +20,13 @@ import java.util.ArrayList;
 public class Home extends Fragment {
 
     //Se crea la lista de elementos "Box"
-    ArrayList<Box> boxes;
+    private ArrayList<Box> boxes;
     //Se llama a la clase "RecyclerView"
-    RecyclerView recyclerView;
-
+    private RecyclerView recyclerView;
+    //Se llama al Adapter
+    private B_RecyclerViewAdapter adapter;
+    //Atributo like
+    boolean like;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,11 +42,41 @@ public class Home extends Fragment {
         //Metodo que crea los distintos elementos que irian dentro del recyclerView
         setUpBoxModels();
         //Se inicializa "B_RecyclerViewAdapter" la cual es la clase que va a introducir los elementos en el recyclerView
-        B_RecyclerViewAdapter adapter = new B_RecyclerViewAdapter(getContext(), boxes);
+        adapter = new B_RecyclerViewAdapter(getContext(), boxes);
         //Aqui se establece el adapter creado previamente
         recyclerView.setAdapter(adapter);
+        //Se le asigna valor al atributo like
+        like = false;
+
+        adapter.setOnItemClickListener(new B_RecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onAnimationClick(int position, LottieAnimationView heart) {
+
+                heart_animation(heart, R.raw.heart, like);
+
+            }
+        });
+
         //Retorna la vista
         return view;
+    }
+
+    private boolean heart_animation(LottieAnimationView imageView, int animation, boolean like) {
+
+        if (!like) {
+
+            imageView.setAnimation(animation);
+            imageView.playAnimation();
+
+        } else {
+
+
+            imageView.setImageResource(R.drawable.ic_empty_heart);
+
+        }
+
+        return !like;
+
     }
 
     private void setUpBoxModels() {

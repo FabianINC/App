@@ -67,7 +67,7 @@ public class Profile extends Fragment {
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 sliderHandler.removeCallbacks(sliderRunnable);
-                sliderHandler.postDelayed(sliderRunnable , 3000);
+                sliderHandler.postDelayed(sliderRunnable , 2000);
             }
         });
         return view;
