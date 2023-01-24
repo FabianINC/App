@@ -69,8 +69,10 @@
     <string name="toastWrongCodeInput">El código ingresado es incorrecto</string>
 
     <!-- PROGRESS DIALOG STRINGS -->
-    <string name="loginProgressDialogTitle">Verificando credenciles</string>
+    <string name="loginProgressDialogTitle">Verificando credenciales, por favor espere...</string>
     <string name="loginProgressDialogText">Por favor espere...</string>
+    <string name="txtProgressDialog">Verificando credenciales, por favor espere...</string>
+
 
     <!-- INPUT ERRORS STRINGS -->
     <string name="txtWrongEmailInput">Ingrese un correo eléctronico válido</string>

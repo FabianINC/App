@@ -3,6 +3,7 @@ package com.archivo.MainMenu.Login_RegisterActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.archivo.Animation.progressDialog;
 import com.archivo.MainMenu.MainActivity;
 import com.archivo.app.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -239,12 +241,15 @@ public class LoginActivity extends AppCompatActivity {
         }else{
 
             // SE CREA EL PROGRESS DIALOG
-            ProgressDialog loginProgress = new ProgressDialog(LoginActivity.this);
+            progressDialog loadingProgress = new progressDialog(LoginActivity.this);
+            loadingProgress.show();
+
+            /*ProgressDialog loginProgress = new ProgressDialog(LoginActivity.this);
 
             loginProgress.setMessage( getString(R.string.loginProgressDialogText) ); // MENSAJE
             loginProgress.setTitle( getString(R.string.loginProgressDialogTitle) ); // TITULO
             loginProgress.setCanceledOnTouchOutside(false);
-            loginProgress.show();
+            loginProgress.show(); */
 
             FirebaseAuth loginAuth = FirebaseAuth.getInstance();;
             FirebaseUser loginUser = loginAuth.getCurrentUser();;
@@ -255,7 +260,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if( task.isSuccessful() ){
-                        loginProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
+                        loadingProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
 
                         showSuccessfulToast();
 
@@ -265,7 +270,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(mainScreen);
 
                     }else{
-                        loginProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
+                        loadingProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
                         showUnsuccessfulToast();
                     }
 
