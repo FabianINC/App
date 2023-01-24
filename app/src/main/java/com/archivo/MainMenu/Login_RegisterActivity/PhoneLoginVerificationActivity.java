@@ -55,12 +55,12 @@ public class PhoneLoginVerificationActivity extends AppCompatActivity {
         txtMessageInstructions = findViewById(R.id.txtMessageInstructions);
 
         // SE 'PERSONALIZA' EL MENSAJE INSTRUCTIVO
-        txtMessageInstructions.setText(String.format(R.string.txtOTPInstructions + " +506 %s", getIntent().getStringExtra("userPhoneNumber")));
+        txtMessageInstructions.setText(String.format( getString(R.string.txtOTPInstructions) + " +506 %s", getIntent().getStringExtra("userPhoneNumber")));
 
        // LISTENER PARA CUANDO SE PRESIONE EL BOTÓN DE 'VERIFICAR'
         btnVerifyOTP.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View btnVerifyNumberClicked) {
                 performOTPVerification();
             }
         });
@@ -68,7 +68,7 @@ public class PhoneLoginVerificationActivity extends AppCompatActivity {
         // LISTENER PARA CUANDO SE NECESITE REENVIAR EL CODIGO DE VERIFICACIÓN
         resendCode.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View txtResendCodeClicked) {
                 resendCode();
             }
         });
@@ -89,7 +89,15 @@ public class PhoneLoginVerificationActivity extends AppCompatActivity {
 
         //SE VERIFICA QUE NO ESTÉ VACÍO O QUE NO SEA MÁS CORTO
         if( inputOTP.equals("") || (inputOTP.length() != 6)){
-            //Toast.makeText(this, R.string.toastWrongCodeInput, Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(this, getString(R.string.txtWrongOTPInput), Toast.LENGTH_SHORT).show();
+
+            codeDigit1.setText("");
+            codeDigit2.setText("");
+            codeDigit3.setText("");
+            codeDigit4.setText("");
+            codeDigit5.setText("");
+            codeDigit6.setText("");
 
         // SI LA VERIFICACIÓN ES CORRECTA SE PROCEDE A VERIFICAR EL CODIGO ENVIADO
         }else{
@@ -107,19 +115,20 @@ public class PhoneLoginVerificationActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 if( task.isSuccessful() ){
-                                    Toast.makeText(PhoneLoginVerificationActivity.this, "Hola", Toast.LENGTH_SHORT).show();
 
                                     Intent mainScreen = new Intent(PhoneLoginVerificationActivity.this, MainActivity.class);
                                     mainScreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(mainScreen);
+
                                 }else{
-                                    Toast.makeText(PhoneLoginVerificationActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+
+                                    Toast.makeText(PhoneLoginVerificationActivity.this, getText(R.string.txtVerificationError), Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
 
             }else{
-                Toast.makeText(this, "internet coneccction", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PhoneLoginVerificationActivity.this, getText(R.string.txtConnectionError), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -238,7 +247,7 @@ public class PhoneLoginVerificationActivity extends AppCompatActivity {
                     @Override
                     public void onCodeSent(@NonNull String newCodeOTP, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                         codeOTP = newCodeOTP;
-                        Toast.makeText(PhoneLoginVerificationActivity.this, "Codigo reenviado", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PhoneLoginVerificationActivity.this, getString(R.string.txtCodeSent), Toast.LENGTH_SHORT).show();
                     }
                 });
     }

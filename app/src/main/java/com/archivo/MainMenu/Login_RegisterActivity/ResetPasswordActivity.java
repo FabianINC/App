@@ -49,9 +49,10 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         /* VARIABLE PARA VERIFICAR QUE SEA UN CORREO VALIDO */
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
         // VERIFICAMOS QUE EL CORREO SEA REALMENTE UN FORMATO DE CORREO
         if( !userEmail.matches(emailPattern) ){
-            //inputEmail.setError(R.string.txtWrongEmailInput);
+            inputEmail.setError( getString(R.string.txtWrongEmailInput) );
             inputEmail.setText("");
 
         }else {
@@ -64,7 +65,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if(task.isSuccessful()){
-                                Toast.makeText(ResetPasswordActivity.this, R.string.toastEmailSend, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ResetPasswordActivity.this, getString(R.string.toastEmailSend), Toast.LENGTH_SHORT).show();
 
                                 // SE LANZA LA NUEVA ACTIVIDAD
                                 Intent loginScreen = new Intent(ResetPasswordActivity.this, LoginActivity.class);
@@ -72,7 +73,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
 
                             }else{
-                                Toast.makeText(ResetPasswordActivity.this, R.string.toastErrorOnReset, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ResetPasswordActivity.this, getString(R.string.toastErrorOnReset), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

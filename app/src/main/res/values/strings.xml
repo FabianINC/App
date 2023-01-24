@@ -10,6 +10,8 @@
     <string name="txtPasswordConfirmation">Confirmar contraseña</string>
     <string name="txtRegisterButton">Registrarse</string>
     <string name="txtAlredyRegistered">Ya estoy registrado</string>
+    <string name="txtProgressDialogTitle">Registrando</string>
+    <string name="txtProgressDialogMessage">Por favor espere...</string>
 
     <!--MENU STRINGS -->
     <string name="title_activity_side_bar">sideBar</string>
@@ -49,6 +51,9 @@
     <string name="btnVerifyOTP">Verificar código</string>
     <string name="txtOTPInstructions">Revise su aplicación de mensajes, en breve te enviaremos el código de verificación</string>
     <string name="txtResendOTP">No tienes un código? Pulsa acá para solicitar uno nuevo</string>
+    <string name="txtVerificationError">Lo sentimos, no ha sido posible verificar tu número</string>
+    <string name="txtConnectionError">Lo sentimos, no ha sido posible conectarse al servidor</string>
+    <string name="txtCodeSent">El código ha sido enviado</string>
 
     <!-- FACEBOOK STRINGS -->
     <string name="facebook_app_id">1234</string>
@@ -70,6 +75,8 @@
     <!-- INPUT ERRORS STRINGS -->
     <string name="txtWrongEmailInput">Ingrese un correo eléctronico válido</string>
     <string name="txtWrongPasswordInput">Ingrese una contraseña válida</string>
+    <string name="txtWrongOTPInput">Ingresa un número de telefono válido</string>
+    <string name="txtWrongConfirmationInput">Las contraseñas no coinciden</string>
 
 
 </resources>

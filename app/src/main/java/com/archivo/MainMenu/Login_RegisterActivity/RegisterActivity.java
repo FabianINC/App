@@ -152,27 +152,27 @@ public class RegisterActivity extends AppCompatActivity {
 
         // VERIFICAMOS QUE EL CORREO SEA REALMENTE UN FORMATO DE CORREO
         if( !userEmail.matches(emailPattern) ){
-            inputEmail.setError("Ingrese un correo eléctronico válido");
+            inputEmail.setError( getString(R.string.txtWrongEmailInput) );
             inputEmail.setText("");
 
         // VERIFICAMOS SI LA CONTRASEÑA ESTÁ VACÍA O ES MUY CORTA
         }else if( userPassword.isEmpty() || userPassword.length() < 6 ){
-            inputPassword.setError("Ingrese una contraseña válido");
+            inputPassword.setError( getString(R.string.txtWrongPasswordInput) );
             inputPassword.setText("");
             inputPasswordConfirmation.setText("");
 
 
         // VERIFICAMOS QUE AMBAS CONTRASEÑAN COINCIDAN
         }else if( !userPassword.equals(userPasswordConfirmation) ){
-            inputPasswordConfirmation.setError("Las contraseñas no coinciden");
+            inputPasswordConfirmation.setError( getString(R.string.txtWrongConfirmationInput) );
             inputPassword.setText("");
             inputPasswordConfirmation.setText("");
 
 
         // SI TODAS LAS VERIFICACIONES SON CORRECTAS
         }else{
-            registerProgress.setMessage("Por favor espere...");
-            registerProgress.setTitle("Registrando");
+            registerProgress.setMessage( getString(R.string.txtProgressDialogMessage) );
+            registerProgress.setTitle( getString(R.string.txtProgressDialogTitle) );
             registerProgress.setCanceledOnTouchOutside(false);
             registerProgress.show();
 

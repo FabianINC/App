@@ -227,12 +227,12 @@ public class LoginActivity extends AppCompatActivity {
 
         // VERIFICAMOS QUE EL CORREO SEA REALMENTE UN FORMATO DE CORREO
         if( !userEmail.matches(emailPattern) ){
-            //inputEmail.setError(R.string.txtWrongEmailInput);
+            inputEmail.setError( getString(R.string.txtWrongEmailInput));
             inputEmail.setText("");
 
         // VERIFICAMOS SI LA CONTRASEÑA ESTÁ VACÍA O ES MUY CORTA
         }else if( userPassword.isEmpty() || userPassword.length() < 6 ){
-            //inputPassword.setError(R.string.txtWrongPasswordInput);
+            inputPassword.setError( getString(R.string.txtWrongPasswordInput) );
             inputPassword.setText("");
 
         // SI TODAS LAS VERIFICACIONES SON CORRECTAS
@@ -241,10 +241,8 @@ public class LoginActivity extends AppCompatActivity {
             // SE CREA EL PROGRESS DIALOG
             ProgressDialog loginProgress = new ProgressDialog(LoginActivity.this);
 
-            /* FALTA ARREGLAR EL MESNAJE DEL PROGRESS DIALOG */
-            String loginProgressText = String.valueOf(R.string.loginProgressDialogText).getBytes().toString();
-            loginProgress.setMessage(loginProgressText); // MENSAJE
-            loginProgress.setTitle(R.string.loginProgressDialogTitle); // TITULO
+            loginProgress.setMessage( getString(R.string.loginProgressDialogText) ); // MENSAJE
+            loginProgress.setTitle( getString(R.string.loginProgressDialogTitle) ); // TITULO
             loginProgress.setCanceledOnTouchOutside(false);
             loginProgress.show();
 
@@ -284,7 +282,6 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 101;
 
     private void performGoogleLogin(){
-
         //CONFIGURANDO EL SERVICIO DE GOOGLE
         GoogleSignInOptions googleSignIn = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string
@@ -294,7 +291,6 @@ public class LoginActivity extends AppCompatActivity {
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(LoginActivity.this, googleSignIn);
 
         Intent signInIntent = googleSignInClient.getSignInIntent();
-        //start
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
