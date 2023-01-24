@@ -52,7 +52,10 @@ public class Home extends Fragment {
             @Override
             public void onAnimationClick(int position, LottieAnimationView heart) {
 
-                heart_animation(heart, R.raw.heart, like);
+
+
+               like = boxes.get(position).heart_animation(heart, R.raw.heart, like);
+
 
             }
         });
@@ -61,23 +64,7 @@ public class Home extends Fragment {
         return view;
     }
 
-    private boolean heart_animation(LottieAnimationView imageView, int animation, boolean like) {
 
-        if (!like) {
-
-            imageView.setAnimation(animation);
-            imageView.playAnimation();
-
-        } else {
-
-
-            imageView.setImageResource(R.drawable.ic_empty_heart);
-
-        }
-
-        return !like;
-
-    }
 
     private void setUpBoxModels() {
 

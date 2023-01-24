@@ -26,6 +26,7 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
     private OnItemClickListener mListener;
 
 
+
     public interface OnItemClickListener{
 
         void onAnimationClick(int position, LottieAnimationView heart);
