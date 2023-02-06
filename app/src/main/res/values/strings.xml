@@ -41,7 +41,7 @@
 
 
     <!-- PHONE NUMBER LOGIN STRINGS -->
-    <string name ="txtPhoneInstructions">Le enviaremos un código de verificación al número de telefono especificado</string>
+    <string name="txtPhoneInstructions">Le enviaremos un código de verificación al número de telefono especificado</string>
     <string name="phonenumberinstruction">Ingrese su número de teléfono</string>
     <string name="txtAreaCode">+506</string>
     <string name="txt_phonenumber">Ingrese su número de teléfono</string>
