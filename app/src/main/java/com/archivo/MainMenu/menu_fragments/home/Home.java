@@ -42,7 +42,7 @@ public class Home extends Fragment {
         //Metodo que crea los distintos elementos que irian dentro del recyclerView
         setUpBoxModels();
         //Se inicializa "B_RecyclerViewAdapter" la cual es la clase que va a introducir los elementos en el recyclerView
-        adapter = new B_RecyclerViewAdapter(getContext(), boxes);
+        adapter = new B_RecyclerViewAdapter(getContext(), boxes, R.layout.reciclerview_element);
         //Aqui se establece el adapter creado previamente
         recyclerView.setAdapter(adapter);
         //Se le asigna valor al atributo like

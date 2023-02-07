@@ -23,8 +23,17 @@
         <item name="color">@color/white</item>
 
 
-    </style
-        >
+    </style>
+
+    <style name="roundimageview2">
+
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">120dp</item>
+        <item name="color">@color/white</item>
+
+
+    </style>
+
     //Para hacer una imagen circular
 
     <style name="circleimageview">

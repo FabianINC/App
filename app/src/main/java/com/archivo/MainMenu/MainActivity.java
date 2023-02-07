@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         //El codigo de abajo desactiva el viewPager2
         //viewPager2.setUserInputEnabled(false);
 

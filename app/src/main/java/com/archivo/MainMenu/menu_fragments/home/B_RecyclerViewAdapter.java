@@ -24,6 +24,8 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
     private Context context;
     private ArrayList<Box> boxes;
     private OnItemClickListener mListener;
+    //Se identifica el layout que funcionara como ejemplo para crear todos los elementos
+    private int id;
 
 
 
@@ -41,10 +43,11 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
 
 
     //Constructor
-   public B_RecyclerViewAdapter(Context context, ArrayList<Box> boxes){
+   public B_RecyclerViewAdapter(Context context, ArrayList<Box> boxes, int id){
 
      this.context = context;
      this.boxes = boxes;
+     this.id = id;
 
    }
 
@@ -53,8 +56,6 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-       //Se identifica el layout que funcionara como ejemplo para crear todos los elementos
-        int id =  R.layout.reciclerview_element;
        //El "LayoutInflater" es el responsable de encontrar el contexto al que le deseamos aplicar los cambios en este caso seria "fragment_home"
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -65,7 +66,7 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
         posteriormente recibira el contenedor el cual sera como un objeto de la clase que se paso previamente y finalmente se pasa un booleano que se pone false para
         evitar que se cree dos veces el mismo conjunto de Views
          */
-        View view = inflater.inflate(id, parent , attached);
+        View view = inflater.inflate(this.id, parent , attached);
         //Finalmente se retorna "MyViewHolder" creado previamente con el argumento view que se explico previamente
         return new MyViewHolder(view, mListener);
     }
