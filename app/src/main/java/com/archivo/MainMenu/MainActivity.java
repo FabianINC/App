@@ -2,12 +2,16 @@ package com.archivo.MainMenu;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
+import com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginActivity;
 import com.archivo.MainMenu.menu_fragments.ViewPageAdapter;
 import com.archivo.app.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -23,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Hace invisibiliza la status bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+
+        //Reconoce los elementos
         bottomNavigationView = findViewById(R.id.bottomNav);
         viewPager2 = findViewById(R.id.viewPager);
         viewPageAdapter = new ViewPageAdapter(this);
