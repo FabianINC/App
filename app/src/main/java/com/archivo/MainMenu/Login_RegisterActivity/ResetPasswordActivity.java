@@ -31,7 +31,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        //Cambia el color del status bar
+        //Invisibiliza la status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         //SE IDENTIFICA CADA VARIABLE GLOBAL

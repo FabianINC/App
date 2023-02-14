@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //Cambia el color del status bar
+        ///Invisibiliza la status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         // SE IDENTIFICA CADA VARIABLE JAVA CON LA UI

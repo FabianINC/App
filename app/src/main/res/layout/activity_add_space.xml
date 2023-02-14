@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.archivo.MainMenu.menu_fragments.profile.AddSpace">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context="com.archivo.MainMenu.Login_RegisterActivity.RegisterActivity">
+
+
+        <EditText
+            android:id="@+id/txtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="276dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/field"
+            android:drawableStart="@drawable/ic_add_location"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="Ubicacion"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtRegisterTitle" />
+
+        <Button
+            android:id="@+id/btnRegisterAccount"
+            android:layout_width="209dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_green"
+            android:text="Incluir"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/txtPrice"
+            app:layout_constraintStart_toStartOf="@+id/txtPrice"
+            app:layout_constraintTop_toBottomOf="@+id/txtPrice"
+            app:layout_constraintVertical_bias="0.183" />
+
+        <TextView
+            android:id="@+id/txtRegisterTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INCLUIR LUGAR"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.439"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.109" />
+
+        <EditText
+            android:id="@+id/txtPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/field"
+            android:drawableStart="@drawable/ic_payment"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="Precio"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/txtName"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/txtName"
+            app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+        <!-- LLAMA AL MÉTODO SI ES PRESIONADO -->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

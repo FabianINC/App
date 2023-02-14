@@ -1,19 +1,16 @@
 package com.archivo.MainMenu.menu_fragments.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -22,7 +19,6 @@ import com.archivo.MainMenu.menu_fragments.home.Box;
 import com.archivo.app.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Profile extends Fragment {
@@ -34,8 +30,9 @@ public class Profile extends Fragment {
     private RecyclerView recyclerView;
     //Se llama al Adapter
     private B_RecyclerViewAdapter adapter;
-    //Atributo like
+    //Otros Atributos
     boolean like;
+    private Button btnAddSpace;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,10 +66,26 @@ public class Profile extends Fragment {
             }
         });
 
+        //Envia el usuario a la actividad para que agregue su espacio
+        btnAddSpace = view.findViewById(R.id.btnAddSpace);
+
+        btnAddSpace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent addSpace = new Intent(getContext(), AddSpace.class);
+                startActivity(addSpace);
+
+            }
+        });
+
+
         //Retorna la vista
         return view;
 
     }
+
+
 
     private void setUpBoxModels() {
 
