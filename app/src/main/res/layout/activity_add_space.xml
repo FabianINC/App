@@ -15,35 +15,61 @@
         tools:layout_editor_absoluteY="-28dp">
 
 
+        <EditText
+            android:id="@+id/txtAddDescription"
+            android:layout_width="354dp"
+            android:layout_height="111dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/field"
+            android:drawableStart="@drawable/ic_description"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:gravity="top"
+            android:hint="Descripción"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:minHeight="48dp"
+            android:paddingStart="20dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/txtAddPrice"
+            app:layout_constraintHorizontal_bias="0.809"
+            app:layout_constraintStart_toStartOf="@+id/txtAddPrice"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddPrice" />
+
         <TextView
             android:id="@+id/txtAddLocationTitle2"
-            android:layout_width="233dp"
-            android:layout_height="30dp"
+            android:layout_width="208dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
             android:text="Añade una imagen"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/cardView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.224"
+            app:layout_constraintHorizontal_bias="0.142"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.893" />
+            app:layout_constraintTop_toBottomOf="@+id/txtAddLocationTitle"
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
-            android:layout_width="match_parent"
-            android:layout_height="288dp"
+            android:layout_width="302dp"
+            android:layout_height="297dp"
 
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginTop="40dp"
             app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtAddLocationTitle"
-            app:layout_constraintVertical_bias="0.207">
+            app:layout_constraintVertical_bias="0.002">
 
             <ImageView
                 android:id="@+id/addImg"
@@ -61,7 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/field"
             android:drawableStart="@drawable/ic_add_location"
@@ -85,14 +111,15 @@
             android:id="@+id/btnSendPlace"
             android:layout_width="209dp"
             android:layout_height="48dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/bg_green"
             android:text="Incluir"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/txtAddPrice"
-            app:layout_constraintStart_toStartOf="@+id/txtAddPrice"
-            app:layout_constraintTop_toBottomOf="@+id/txtAddPrice"
-            app:layout_constraintVertical_bias="0.388" />
+            app:layout_constraintEnd_toEndOf="@+id/txtAddDescription"
+            app:layout_constraintStart_toStartOf="@+id/txtAddDescription"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddDescription"
+            app:layout_constraintVertical_bias="0.111" />
 
         <TextView
             android:id="@+id/txtAddLocationTitle"
@@ -104,9 +131,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.096"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.045" />
+            app:layout_constraintVertical_bias="0.032" />
 
         <EditText
             android:id="@+id/txtAddPrice"

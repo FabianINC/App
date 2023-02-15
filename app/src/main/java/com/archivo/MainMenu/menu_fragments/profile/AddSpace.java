@@ -31,7 +31,7 @@ import java.util.Objects;
 
 public class AddSpace extends AppCompatActivity {
 
-    private EditText txtAddLocation, txtAddPrice;
+    private EditText txtAddLocation, txtAddPrice, txtAddDescription;
     private Button btnAddPlace, btnSelectImg;
     private FirebaseFirestore firestore;
     private StorageReference storageRef;
@@ -56,6 +56,7 @@ public class AddSpace extends AppCompatActivity {
 
         addImg = findViewById(R.id.addImg);
         txtAddLocation = findViewById(R.id.txtAddLocation);
+        txtAddDescription = findViewById(R.id.txtAddDescription);
         txtAddPrice = findViewById(R.id.txtAddPrice);
         btnAddPlace = findViewById(R.id.btnSendPlace);
 
@@ -69,9 +70,10 @@ public class AddSpace extends AppCompatActivity {
                 String location = txtAddLocation.getText().toString();
                 //El .trim() elimina los espacions y unicamente deja el texto
                 String price = txtAddPrice.getText().toString().trim();
+                String description = txtAddDescription.getText().toString();
 
 
-                if( location.isEmpty() || price.isEmpty() ){
+                if( location.isEmpty() || price.isEmpty() || description.isEmpty() ){
 
                     Toast.makeText(AddSpace.this, "Algunos campos no se han completado", Toast.LENGTH_SHORT).show();
 
@@ -79,7 +81,7 @@ public class AddSpace extends AppCompatActivity {
                 }else{
 
                       uploadPicture();
-                      postPlace(location, price);
+                      postPlace(location, price, description);
 
                 }
 
@@ -108,10 +110,11 @@ public class AddSpace extends AppCompatActivity {
 
     }
 
-    private void postPlace(String location, String price) {
+    private void postPlace(String location, String price, String description) {
         Map<String, Object> map = new HashMap<>();
                 map.put("location", location);
                 map.put("price", price);
+                map.put("description", description);
 
 
 
@@ -153,7 +156,6 @@ public class AddSpace extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                //Toast.makeText(AddSpace.this, "La foto se subio exitosamente", Toast.LENGTH_SHORT).show();
 
             }
         });
