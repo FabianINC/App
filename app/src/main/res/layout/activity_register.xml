@@ -9,7 +9,7 @@
 
 
         <EditText
-            android:id="@+id/txtName"
+            android:id="@+id/txtAddLocation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -51,9 +51,9 @@
             android:paddingBottom="10dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            app:layout_constraintEnd_toEndOf="@+id/txtName"
-            app:layout_constraintStart_toStartOf="@+id/txtName"
-            app:layout_constraintTop_toBottomOf="@+id/txtName" />
+            app:layout_constraintEnd_toEndOf="@+id/txtAddLocation"
+            app:layout_constraintStart_toStartOf="@+id/txtAddLocation"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddLocation" />
 
         <EditText
             android:id="@+id/txtRegisterPassword"
@@ -100,7 +100,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtRegisterPassword" />
 
         <Button
-            android:id="@+id/btnRegisterAccount"
+            android:id="@+id/btnAddPlace"
             android:layout_width="209dp"
             android:layout_height="48dp"
             android:layout_marginStart="100dp"
@@ -137,10 +137,10 @@
             android:text="@string/txtAlredyRegistered"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/btnRegisterAccount"
+            app:layout_constraintEnd_toEndOf="@+id/btnAddPlace"
             app:layout_constraintHorizontal_bias="0.454"
-            app:layout_constraintStart_toStartOf="@+id/btnRegisterAccount"
-            app:layout_constraintTop_toBottomOf="@+id/btnRegisterAccount"
+            app:layout_constraintStart_toStartOf="@+id/btnAddPlace"
+            app:layout_constraintTop_toBottomOf="@+id/btnAddPlace"
             tools:ignore="UsingOnClickInXml" /> <!-- LLAMA AL MÉTODO SI ES PRESIONADO -->
 
 

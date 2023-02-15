@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.archivo.app.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -51,12 +50,12 @@ public class RegisterActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         // SE IDENTIFICA CADA VARIABLE JAVA CON LA UI
-        inputUserName = findViewById(R.id.txtName);
+        inputUserName = findViewById(R.id.txtAddLocation);
         inputEmail = findViewById(R.id.txtNewEmail);
         inputPassword = findViewById(R.id.txtRegisterPassword);
         inputPasswordConfirmation = findViewById(R.id.txtPasswordConfirmation);
 
-        btnRegister = findViewById(R.id.btnRegisterAccount);
+        btnRegister = findViewById(R.id.btnAddPlace);
 
         existingUser = findViewById(R.id.txtExistingAccount);
 

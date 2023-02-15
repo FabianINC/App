@@ -10,15 +10,58 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        tools:context="com.archivo.MainMenu.Login_RegisterActivity.RegisterActivity">
+        tools:context="com.archivo.MainMenu.Login_RegisterActivity.RegisterActivity"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-28dp">
 
+
+        <TextView
+            android:id="@+id/txtAddLocationTitle2"
+            android:layout_width="233dp"
+            android:layout_height="30dp"
+            android:text="Añade una imagen"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.224"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.893" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="288dp"
+
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddLocationTitle"
+            app:layout_constraintVertical_bias="0.207">
+
+            <ImageView
+                android:id="@+id/addImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/upload_img"
+                tools:ignore="ContentDescription" />
+
+
+        </androidx.cardview.widget.CardView>
 
         <EditText
-            android:id="@+id/txtName"
+            android:id="@+id/txtAddLocation"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="276dp"
+            android:layout_marginTop="44dp"
             android:layout_marginEnd="40dp"
             android:background="@drawable/field"
             android:drawableStart="@drawable/ic_add_location"
@@ -36,23 +79,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtRegisterTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
         <Button
-            android:id="@+id/btnRegisterAccount"
+            android:id="@+id/btnSendPlace"
             android:layout_width="209dp"
             android:layout_height="48dp"
             android:background="@drawable/bg_green"
             android:text="Incluir"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/txtPrice"
-            app:layout_constraintStart_toStartOf="@+id/txtPrice"
-            app:layout_constraintTop_toBottomOf="@+id/txtPrice"
-            app:layout_constraintVertical_bias="0.183" />
+            app:layout_constraintEnd_toEndOf="@+id/txtAddPrice"
+            app:layout_constraintStart_toStartOf="@+id/txtAddPrice"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddPrice"
+            app:layout_constraintVertical_bias="0.388" />
 
         <TextView
-            android:id="@+id/txtRegisterTitle"
+            android:id="@+id/txtAddLocationTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="INCLUIR LUGAR"
@@ -61,16 +104,15 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.439"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.109" />
+            app:layout_constraintVertical_bias="0.045" />
 
         <EditText
-            android:id="@+id/txtPrice"
+            android:id="@+id/txtAddPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/field"
             android:drawableStart="@drawable/ic_payment"
             android:drawablePadding="10dp"
@@ -84,10 +126,10 @@
             android:paddingBottom="10dp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            app:layout_constraintEnd_toEndOf="@+id/txtName"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/txtName"
-            app:layout_constraintTop_toBottomOf="@+id/txtName" />
+            app:layout_constraintEnd_toEndOf="@+id/txtAddLocation"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/txtAddLocation"
+            app:layout_constraintTop_toBottomOf="@+id/txtAddLocation" />
 
         <!-- LLAMA AL MÉTODO SI ES PRESIONADO -->
 

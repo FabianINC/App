@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -102,7 +101,7 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
          public MyViewHolder(@NonNull View itemView, OnItemClickListener listener){
              super(itemView);
 
-             imageView = itemView.findViewById(R.id.recicler_img);
+             imageView = itemView.findViewById(R.id.addImg);
              tvLocation = itemView.findViewById(R.id.txt_Location);
              tvPrice = itemView.findViewById(R.id.txt_Price);
              heart = itemView.findViewById(R.id.animation);

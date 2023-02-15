@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- PERMISO DE INTERNET -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- PERMISO DE ACCEDER AL ALMACENAMIENTO -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
