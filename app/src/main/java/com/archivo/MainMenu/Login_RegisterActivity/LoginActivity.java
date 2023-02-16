@@ -21,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.archivo.Animation.progressDialog;
+import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.FacebookLogin;
+import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.GoogleLogin;
 import com.archivo.MainMenu.MainActivity;
 import com.archivo.app.R;
 import com.facebook.AccessToken;
@@ -299,63 +301,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
 /* ------------------------------------------- GOOGLE ------------------------------------------ */
-    // MÉTODO PARA INICIAR SESIÓN CON GOOGLE
-    private static final int RC_SIGN_IN = 101;
-
     private void performGoogleLogin(){
-        //CONFIGURANDO EL SERVICIO DE GOOGLE
-        GoogleSignInOptions googleSignIn = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string
-                        .default_web_client_id))
-                .requestEmail()
-                .build();
-        GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(LoginActivity.this, googleSignIn);
-
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    protected void onActivityResult(int googleRequestCode, int googleResultCode, Intent googleIntent){
-        super.onActivityResult(googleRequestCode, googleResultCode, googleIntent);
-
-        //SE VERIFICA EL RESULTADO DEVUELTO DEL INTENT DEL LOGIN MEDIANTE GOOGLE
-        if( googleRequestCode == RC_SIGN_IN ){
-            Task<GoogleSignInAccount> signInTask = GoogleSignIn.getSignedInAccountFromIntent(googleIntent);
-
-            try{
-                GoogleSignInAccount userAccount = signInTask.getResult(ApiException.class);
-                firebaseAuthWithGoogle(userAccount.getIdToken());
-            }catch(ApiException apiError){
-                showUnsuccessfulToast();
-            }
-        }
-    }
-
-    private void firebaseAuthWithGoogle(String idToken){
-        AuthCredential userCredential = GoogleAuthProvider.getCredential(idToken, null);
-
-        FirebaseAuth loginAuth = FirebaseAuth.getInstance();;
-        FirebaseUser loginUser = loginAuth.getCurrentUser();;
-
-        loginAuth.signInWithCredential(userCredential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        if(task.isSuccessful()){
-
-                            FirebaseUser signedUser = loginAuth.getCurrentUser();
-                            showSuccessfulToast();
-
-                            Intent mainScreen = new Intent(LoginActivity.this, MainActivity.class);
-                            mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(mainScreen);
-
-                        }else{
-                            showUnsuccessfulToast();
-                        }
-                    }
-                });
+        Intent googleLogin = new Intent(LoginActivity.this, GoogleLogin.class);
+        googleLogin.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(googleLogin);
+        overridePendingTransition(0,0); // SE ELIMINA LA ANIMACIÓN DEL CAMBIO DE ACTIVITY
     }
 /* --------------------------------------------------------------------------------------------- */
 
@@ -363,69 +313,10 @@ public class LoginActivity extends AppCompatActivity {
 
 /* ------------------------------------------ FACEBOOK ----------------------------------------- */
 
-    CallbackManager facebookCallBack;
-
-    // MÉTODO PARA INICIAR SESIÓN CON FACEBOOK
     private void performFacebookLogin(){
-
-        facebookCallBack = CallbackManager.Factory.create();
-
-        //SE OTORGAN PERMISOS
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
-
-        LoginManager.getInstance().registerCallback(facebookCallBack,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        handleFacebookAccessToken(loginResult.getAccessToken());
-                    }
-
-                    @Override
-                    public void onCancel() {
-
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-
-                    }
-                });
-
-
+        Intent facebookLogin = new Intent(LoginActivity.this, FacebookLogin.class);
+        startActivity(facebookLogin);
     }
-
-    /*
-    @Override
-    protected void onActivityResult(int facebookRequestCode, int facebookResultCode, Intent facebookIntent){
-        super.onActivityResult(facebookRequestCode, facebookResultCode, facebookIntent);
-
-        facebookCallBack.onActivityResult(facebookRequestCode, facebookResultCode, facebookIntent);
-    }
-    */
-    FirebaseAuth facebookAuth;
-
-    private void handleFacebookAccessToken(AccessToken facebookToken) {
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(facebookToken.getToken());
-        facebookAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser facebookUser = facebookAuth.getCurrentUser();
-
-                            //SE HACE EL LLAMADO A OTRA ACTIVIDAD
-                            Intent mainScreen = new Intent(LoginActivity.this, MainActivity.class);
-                            mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(mainScreen);
-
-                        } else {
-                           showUnsuccessfulToast();
-                        }
-                    }
-                });
-    }
-
 /* --------------------------------------------------------------------------------------------- */
 
 

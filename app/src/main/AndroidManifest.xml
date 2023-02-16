@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <!-- PERMISO DE INTERNET -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- PERMISO DE ACCEDER AL ALMACENAMIENTO -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- PERMISO DE ACCEDER AL ALMACENAMIENTO -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -17,55 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App"
         tools:targetApi="31">
-        <activity
-            android:name="com.archivo.MainMenu.menu_fragments.profile.AddSpace"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".EmailSignUp"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".GoogleSignUp"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".FacebookSignUp"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginVerificationActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="com.archivo.MainMenu.MainActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
+        <!-- MAIN LOGIN ACTIVITY -->
         <activity
             android:name="com.archivo.MainMenu.Login_RegisterActivity.LoginActivity"
             android:exported="true">
@@ -78,22 +30,63 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
+        </activity> <!-- GOOGLE LOGIN -->
+        <activity
+            android:name="com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.GoogleLogin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- FACEBOOK LOGIN -->
+        <activity
+            android:name="com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.FacebookLogin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- PHONE LOGIN ACTIVITY -->
+        <activity
+            android:name="com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- PHONE LOGIN VERIFICATION ACTIVITY -->
+        <activity
+            android:name="com.archivo.MainMenu.Login_RegisterActivity.PhoneLoginVerificationActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- REGISTER ACTIVITY -->
         <activity
             android:name="com.archivo.MainMenu.Login_RegisterActivity.RegisterActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
+        </activity> <!-- RESET PASSWORD ACTIVITY -->
         <activity
             android:name="com.archivo.MainMenu.Login_RegisterActivity.ResetPasswordActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-
+        </activity> <!-- MAIN MENU ACTIVITY -->
+        <activity
+            android:name="com.archivo.MainMenu.MainActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- MENU FRAGMENTS -->
+        <activity
+            android:name="com.archivo.MainMenu.menu_fragments.profile.AddSpace"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- FACEBOOK LOGIN METADATA -->
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
