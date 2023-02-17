@@ -32,7 +32,7 @@ import java.util.Objects;
 public class AddSpace extends AppCompatActivity {
 
     private EditText txtAddLocation, txtAddPrice, txtAddDescription;
-    private Button btnAddPlace, btnSelectImg;
+    private Button btnAddPlace;
     private FirebaseFirestore firestore;
     private StorageReference storageRef;
     private ImageView addImg;

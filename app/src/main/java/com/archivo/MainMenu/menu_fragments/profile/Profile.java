@@ -1,5 +1,6 @@
 package com.archivo.MainMenu.menu_fragments.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,9 +15,13 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.archivo.MainMenu.Login_RegisterActivity.LoginActivity;
+import com.archivo.MainMenu.Login_RegisterActivity.RegisterActivity;
 import com.archivo.MainMenu.menu_fragments.home.B_RecyclerViewAdapter;
 import com.archivo.MainMenu.menu_fragments.home.Box;
 import com.archivo.app.R;
@@ -34,8 +39,11 @@ public class Profile extends Fragment {
     private RecyclerView recyclerView;
     //Se llama al Adapter
     private B_RecyclerViewAdapter adapter;
-    //Atributo like
+    //Otros atributos
     boolean like;
+    private Button btnAddSpace;
+    private ImageView logOut;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,8 +63,11 @@ public class Profile extends Fragment {
         adapter = new B_RecyclerViewAdapter(getContext(), boxes, R.layout.slide_item_container);
         //Aqui se establece el adapter creado previamente
         recyclerView.setAdapter(adapter);
-        //Se le asigna valor al atributo like
+        //Se le asigna valor a los atributos
         like = false;
+        btnAddSpace = view.findViewById(R.id.btnAddSpace);
+        logOut = view.findViewById(R.id.ivLogOut);
+
 
         adapter.setOnItemClickListener(new B_RecyclerViewAdapter.OnItemClickListener() {
             @Override
@@ -69,10 +80,42 @@ public class Profile extends Fragment {
             }
         });
 
+        btnAddSpace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent addSpaceScreen = new Intent(getContext() , AddSpace.class  );
+                // LLAMADO A LA PANTALLA PARA INCLUIR OTRO LUGAR
+                startActivity(addSpaceScreen);
+
+
+            }
+        });
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent addSpaceScreen = new Intent(getContext() , LoginActivity.class  );
+                // LLAMADO A LA PANTALLA DE INICIO
+                startActivity(addSpaceScreen);
+
+
+            }
+        });
+
+
         //Retorna la vista
         return view;
 
     }
+
+    /*
+        Intent registerScreen = new Intent(LoginActivity.this,RegisterActivity.class);
+
+        // LLAMADO A LA PANTALLA DE REGISTRO
+        startActivity(registerScreen);
+    */
 
     private void setUpBoxModels() {
 
