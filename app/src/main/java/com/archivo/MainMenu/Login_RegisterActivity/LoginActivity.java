@@ -1,10 +1,7 @@
 package com.archivo.MainMenu.Login_RegisterActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,35 +15,18 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import com.archivo.Animation.progressDialog;
+import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.EmailLogin;
 import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.FacebookLogin;
 import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.GoogleLogin;
 import com.archivo.MainMenu.MainActivity;
 import com.archivo.app.R;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
-
-import java.util.Arrays;
-import java.util.Objects;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -143,151 +123,22 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-        /*
-        sharedPreferences = getSharedPreferences("MyAppName" , MODE_PRIVATE);
-
-        // SE MANTIENE LA SESION INICIADA UNA VEZ QUE HAYA INICIADO SESION
-        if(sharedPreferences.getString("logged", "false").equals("true")){
-            startActivity(new Intent(LoginActivity.this, Main.class));
-            finish();
-        }
-
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                // SE CONVIERTE A STRING LOS VALORES INGRESADOS
-                email = txt_email.getText().toString();
-                password = txt_password.getText().toString();
-
-                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                String url ="http://192.168.100.5/login_register/login.php";
-
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-
-                                try {
-
-                                    //Se utiliza un jsonObject ya que el php esta en formato JSON
-                                    JSONObject jsonObject = new JSONObject(response);
-                                    //Esto retorna el estado del php, si el inicio de sesion fue exitoso o no
-                                    String status = jsonObject.getString("status");
-                                    //Este retonrna el mensaje, utilizado sobretodo en caso de errores
-                                    String message = jsonObject.getString("message");
-
-
-                                    if(status.equals("success")){
-
-                                        //En caso de que se inicie sesion exitosamente se recuperan los datos del php
-                                       name = jsonObject.getString("name");
-                                       email = jsonObject.getString("email");
-                                       apiKey = jsonObject.getString("apiKey");
-
-                                       Estos datos son utilizados en SharedPreferences lo que despues ayudara a
-                                         mantener la sesion iniciada despues de la primera vez que inicio sesion
-                                       SharedPreferences.Editor editor = sharedPreferences.edit();
-                                       editor.putString("logged" , "true");
-                                       editor.putString("name" , name);
-                                       editor.putString("email" , email);
-                                       editor.putString("apiKey" , apiKey);
-                                       editor.apply();
-                                       showSuccesfulToast("Login successful");
-                                       startActivity(new Intent(LoginActivity.this, Main.class));
-                                       finish();
-
-                                    }
-
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-
-                     SE MUESTRA UN TOAST CON EL ERROR
-                    public void onErrorResponse(VolleyError error) {
-                        showUnsuccessfulToast(error.getMessage());
-                    }
-                }){
-
-                    protected Map<String, String> getParams(){
-                        Map<String, String> paramV = new HashMap<>();
-
-                        paramV.put("email", email);
-                        paramV.put("password", password);
-                        return paramV;
-                    }
-                };
-                queue.add(stringRequest);
-            }
-        });
-    */
     }
 
 
 /* ------------------------------------ CORREO - CONTRASEÑA ------------------------------------ */
-    // MÉTODO PARA INICIAR SESIÓN CON CORREO Y CONTRASEÑA
     private void performEmailLogin(){
-
-        /* VARIABLE PARA VERIFICAR QUE SEA UN CORREO VALIDO */
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
         final String userEmail = inputEmail.getText().toString();
-        final String userPassword= inputPassword.getText().toString();
+        final String userPassword = inputPassword.getText().toString();
 
-        // VERIFICAMOS QUE EL CORREO SEA REALMENTE UN FORMATO DE CORREO
-        if( !userEmail.matches(emailPattern) ){
-            inputEmail.setError( getString(R.string.txtWrongEmailInput));
-            inputEmail.setText("");
+        Intent emailLogin = new Intent(LoginActivity.this, EmailLogin.class);
+        emailLogin.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 
-        // VERIFICAMOS SI LA CONTRASEÑA ESTÁ VACÍA O ES MUY CORTA
-        }else if( userPassword.isEmpty() || userPassword.length() < 6 ){
-            inputPassword.setError( getString(R.string.txtWrongPasswordInput) );
-            inputPassword.setText("");
+        emailLogin.putExtra("userEmail", userEmail); //SE ENVIA EL CORREO
+        emailLogin.putExtra("userPassword", userPassword); // SE ENVIA LA CONTRASEÑA
 
-        // SI TODAS LAS VERIFICACIONES SON CORRECTAS
-        }else{
-
-            // SE CREA EL PROGRESS DIALOG
-            progressDialog loadingProgress = new progressDialog(LoginActivity.this);
-            loadingProgress.show();
-
-            FirebaseAuth loginAuth = FirebaseAuth.getInstance();;
-            FirebaseUser loginUser = loginAuth.getCurrentUser();;
-
-            // SE REALIZA LA PETICIÓN PARA LOGEAR UN USUARIO
-            loginAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-
-                    if( task.isSuccessful() ){
-                        loadingProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
-
-                        showSuccessfulToast();
-
-                        // SE LANZA LA NUEVA ACTIVIDAD
-                        Intent mainScreen = new Intent(LoginActivity.this, MainActivity.class);
-                        mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(mainScreen);
-
-                    }else{
-                        loadingProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
-                        showUnsuccessfulToast();
-                    }
-
-                }
-            });
-        }
+        startActivity(emailLogin);
+        overridePendingTransition(0,0); // SE ELIMINA LA ANIMACIÓN DEL CAMBIO DE ACTIVITY
     }
 /* --------------------------------------------------------------------------------------------- */
 
@@ -303,9 +154,7 @@ public class LoginActivity extends AppCompatActivity {
 /* --------------------------------------------------------------------------------------------- */
 
 
-
 /* ------------------------------------------ FACEBOOK ----------------------------------------- */
-
     private void performFacebookLogin(){
         Intent facebookLogin = new Intent(LoginActivity.this, FacebookLogin.class);
         startActivity(facebookLogin);

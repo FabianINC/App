@@ -16,7 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App"
         tools:targetApi="31">
-
+        <activity
+            android:name=".EmailLogin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <!-- MAIN LOGIN ACTIVITY -->
         <activity
             android:name="com.archivo.MainMenu.Login_RegisterActivity.LoginActivity"
@@ -30,7 +36,16 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- GOOGLE LOGIN -->
+        </activity>
+        <activity
+            android:name="com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.EmailLogin"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- EMAIL LOGIN -->
+
+        <!-- GOOGLE LOGIN -->
         <activity
             android:name="com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.GoogleLogin"
             android:exported="false">
