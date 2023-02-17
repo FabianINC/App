@@ -262,13 +262,6 @@ public class LoginActivity extends AppCompatActivity {
             progressDialog loadingProgress = new progressDialog(LoginActivity.this);
             loadingProgress.show();
 
-            /*ProgressDialog loginProgress = new ProgressDialog(LoginActivity.this);
-
-            loginProgress.setMessage( getString(R.string.loginProgressDialogText) ); // MENSAJE
-            loginProgress.setTitle( getString(R.string.loginProgressDialogTitle) ); // TITULO
-            loginProgress.setCanceledOnTouchOutside(false);
-            loginProgress.show(); */
-
             FirebaseAuth loginAuth = FirebaseAuth.getInstance();;
             FirebaseUser loginUser = loginAuth.getCurrentUser();;
 
@@ -288,7 +281,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(mainScreen);
 
                     }else{
-                        //loadingProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
+                        loadingProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
                         showUnsuccessfulToast();
                     }
 
