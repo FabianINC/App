@@ -30,7 +30,7 @@ public class GoogleLogin extends LoginActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(this, "OnCreate", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "OnCreate", Toast.LENGTH_SHORT).show();
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_google_login);
 
@@ -47,7 +47,7 @@ public class GoogleLogin extends LoginActivity {
     }
 
     protected void onActivityResult(int googleRequestCode, int googleResultCode, Intent googleIntent){
-        Toast.makeText(this, "OnActivityResult", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "OnActivityResult", Toast.LENGTH_SHORT).show();
         super.onActivityResult(googleRequestCode, googleResultCode, googleIntent);
 
         //SE VERIFICA EL RESULTADO DEVUELTO DEL INTENT DEL LOGIN MEDIANTE GOOGLE
@@ -58,7 +58,7 @@ public class GoogleLogin extends LoginActivity {
                 GoogleSignInAccount userAccount = signInTask.getResult(ApiException.class);
                 firebaseAuthWithGoogle(userAccount.getIdToken());
             }catch(ApiException apiError){
-                Toast.makeText(this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "apiError.getMessage()", Toast.LENGTH_SHORT).show();
                 showUnsuccessfulToast();
             }
         }
