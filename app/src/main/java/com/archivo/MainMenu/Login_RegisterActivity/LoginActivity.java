@@ -41,8 +41,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private ImageView btnGoogleLogin, btnFacebookLogin, btnPhoneLogin;
 
-    //String  email , password, name , apiKey;
-    //SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
