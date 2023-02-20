@@ -17,14 +17,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.archivo.MainMenu.Login_RegisterActivity.LoginActivity;
+import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.EmailLogin;
 import com.archivo.MainMenu.Login_RegisterActivity.RegisterActivity;
 import com.archivo.MainMenu.menu_fragments.home.B_RecyclerViewAdapter;
 import com.archivo.MainMenu.menu_fragments.home.Box;
 import com.archivo.app.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +50,23 @@ public class Profile extends Fragment {
     private ImageView logOut;
 
 
+    private TextView email;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+
+        email = view.findViewById(R.id.txtProfileEmail);
+
+        try{
+            email.setText( loggedUser.getEmail() );
+        }catch(Exception e){
+            email.setText( e.getLocalizedMessage());
+        }
+
 
         //Se inicializa el Arraylist
         boxes = new ArrayList<>();
@@ -129,5 +146,14 @@ public class Profile extends Fragment {
         }
     }
 
+    private FirebaseUser loggedUser;
+    public void setFireBaseUser(FirebaseUser loggedUser){
+        this.loggedUser = loggedUser;
+    }
+
+    private FirebaseAuth usedAuth;
+    public void setFireBaseAuth(FirebaseAuth usedAuth){
+        this.usedAuth = usedAuth;
+    }
 
 }

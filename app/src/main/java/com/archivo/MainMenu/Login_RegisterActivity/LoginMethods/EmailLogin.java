@@ -1,7 +1,6 @@
 package com.archivo.MainMenu.Login_RegisterActivity.LoginMethods;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import android.widget.Toast;
 import com.archivo.Animation.progressDialog;
 import com.archivo.MainMenu.Login_RegisterActivity.LoginActivity;
 import com.archivo.MainMenu.MainActivity;
+import com.archivo.MainMenu.menu_fragments.profile.Profile;
 import com.archivo.app.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,12 +23,15 @@ public class EmailLogin extends LoginActivity {
     /* VARIABLE PARA VERIFICAR QUE SEA UN CORREO VALIDO */
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-    private EditText inputEmail,inputPassword;
+    private EditText inputEmail, inputPassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // setContentView(R.layout.activity_email_login);
+
+
 
         // SE OBTIENE EL CORREO - CONTRASEÑA
        String userEmail = getIntent().getStringExtra("userEmail");
@@ -51,8 +54,10 @@ public class EmailLogin extends LoginActivity {
             progressDialog loadingProgress = new progressDialog(EmailLogin.this);
             loadingProgress.show();
 
-            FirebaseAuth loginAuth = FirebaseAuth.getInstance();;
-            FirebaseUser loginUser = loginAuth.getCurrentUser();;
+            FirebaseAuth loginAuth = FirebaseAuth.getInstance();
+            FirebaseUser loginUser = loginAuth.getCurrentUser();
+
+
 
             // SE REALIZA LA PETICIÓN PARA LOGEAR UN USUARIO
             loginAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -62,12 +67,23 @@ public class EmailLogin extends LoginActivity {
                     if( task.isSuccessful() ){
                         loadingProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
 
-                        showSuccessfulToast();
 
-                        // SE LANZA LA NUEVA ACTIVIDAD
-                        Intent mainScreen = new Intent(EmailLogin.this, MainActivity.class);
-                        mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(mainScreen);
+                        try{
+                            Profile setParameters = new Profile();
+                            setParameters.setFireBaseAuth(loginAuth);
+                            setParameters.setFireBaseUser(loginUser);
+
+
+                            //showSuccessfulToast();
+
+                            // SE LANZA LA NUEVA ACTIVIDAD
+                            Intent mainScreen = new Intent(EmailLogin.this, MainActivity.class);
+                            mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(mainScreen);
+
+                        }catch(Exception error){
+                            Toast.makeText(EmailLogin.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
 
                     }else{
                         loadingProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
@@ -79,4 +95,5 @@ public class EmailLogin extends LoginActivity {
         }
 
     }
+
 }
