@@ -25,12 +25,14 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.archivo.MainMenu.Login_RegisterActivity.LoginActivity;
 import com.archivo.MainMenu.Login_RegisterActivity.LoginMethods.EmailLogin;
 import com.archivo.MainMenu.Login_RegisterActivity.RegisterActivity;
+import com.archivo.MainMenu.MainActivity;
 import com.archivo.MainMenu.menu_fragments.home.B_RecyclerViewAdapter;
 import com.archivo.MainMenu.menu_fragments.home.Box;
 import com.archivo.app.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +54,10 @@ public class Profile extends Fragment {
 
     private TextView email;
 
+
+    private FirebaseUser loggedUser;
+    private FirebaseAuth usedAuth;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,9 +68,14 @@ public class Profile extends Fragment {
         email = view.findViewById(R.id.txtProfileEmail);
 
         try{
-            email.setText( loggedUser.getEmail() );
-        }catch(Exception e){
-            email.setText( e.getLocalizedMessage());
+            String correoUsado = loggedUser.getEmail();
+            email.setText(correoUsado);
+        }catch(Exception error){
+
+            email.setText("CORREO NULO");
+
+            //cómo se pone un toast acá
+
         }
 
 
@@ -146,12 +157,12 @@ public class Profile extends Fragment {
         }
     }
 
-    private FirebaseUser loggedUser;
+
     public void setFireBaseUser(FirebaseUser loggedUser){
         this.loggedUser = loggedUser;
     }
 
-    private FirebaseAuth usedAuth;
+
     public void setFireBaseAuth(FirebaseAuth usedAuth){
         this.usedAuth = usedAuth;
     }

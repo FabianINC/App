@@ -82,7 +82,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private FirebaseFirestore registerAuth;
+    private FirebaseAuth registerFireBaseAuth;
+    private FirebaseFirestore registerFireStoreAuth;
 
     /* VARIABLE PARA VERIFICAR QUE SEA UN CORREO VALIDO */
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -125,7 +126,9 @@ public class RegisterActivity extends AppCompatActivity {
             registerProgress.show();
 
             // SE REALIZA LA PETICIÓN PARA REGISTRAR UN USUARIO
-            registerAuth = FirebaseFirestore.getInstance();
+            registerFireStoreAuth = FirebaseFirestore.getInstance();
+            registerFireBaseAuth = FirebaseAuth.getInstance();
+
             addNewUser(userName, userEmail, userPassword);
         }
 
@@ -134,26 +137,49 @@ public class RegisterActivity extends AppCompatActivity {
     // MÉTODO PARA AÑADIR UN NUEVO USUARIO A FIRESTORE
     private void addNewUser(String userName, String userEmail, String userPassword){
 
-        // SE AGREGAN LOS DATOS A LA PETICIÓN
-        Map<String, Object> userData = new HashMap<>();
-        userData.put("Nombre", userName);
-        userData.put("Email", userEmail);
-        userData.put("Contraseña", userPassword);
-
-        registerAuth.collection("Usuarios").add(userData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        registerFireBaseAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onSuccess(DocumentReference documentReference) {
-                showSuccessfulToast();
+            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                Intent loginScreen = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(loginScreen);
+                if( task.isSuccessful()){
+
+                    // SE OBTIENE EL ID DEL USUARIO
+                    String userID = registerFireBaseAuth.getCurrentUser().getUid();
+
+                    // SE AGREGAN LOS DATOS A FIRESTORE
+                    Map<String, Object> userData = new HashMap<>();
+                    userData.put("1.ID", userID);
+                    userData.put("2.Nombre", userName);
+                    userData.put("3.Email", userEmail);
+                    userData.put("4. Telefono", "");
+                    userData.put("4.Contraseña", userPassword);
+
+                    registerFireStoreAuth.collection("Usuarios").add(userData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            showSuccessfulToast();
+
+                            Intent loginScreen = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(loginScreen);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            showUnsuccessfulToast();
+                        }
+                    });
+
+                }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                showUnsuccessfulToast();
+
             }
         });
+
+
 
     }
 

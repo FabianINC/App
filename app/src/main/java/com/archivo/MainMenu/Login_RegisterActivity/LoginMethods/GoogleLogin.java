@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.archivo.MainMenu.Login_RegisterActivity.LoginActivity;
+import com.archivo.MainMenu.Login_RegisterActivity.RegisterActivity;
 import com.archivo.MainMenu.MainActivity;
 import com.archivo.app.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -16,12 +17,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GoogleLogin extends LoginActivity {
 
@@ -65,6 +73,7 @@ public class GoogleLogin extends LoginActivity {
     }
 
 
+    FirebaseFirestore registerFireStoreAuth;
     private void firebaseAuthWithGoogle(String idToken){
         AuthCredential userCredential = GoogleAuthProvider.getCredential(idToken, null);
 
@@ -81,12 +90,8 @@ public class GoogleLogin extends LoginActivity {
                             FirebaseUser signedUser = loginAuth.getCurrentUser();
                             showSuccessfulToast();
 
-                            Intent mainScreen = new Intent(GoogleLogin.this, MainActivity.class);
-                            mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                            //HAY QUE PASAR LOS DATOS DEL USUARIO
-
-                            startActivity(mainScreen);
+                            Intent loginScreen = new Intent(GoogleLogin.this, MainActivity.class);
+                            startActivity(loginScreen);
 
                         }else{
                             showUnsuccessfulToast();

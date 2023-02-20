@@ -67,18 +67,17 @@ public class EmailLogin extends LoginActivity {
                     if( task.isSuccessful() ){
                         loadingProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
 
-
                         try{
                             Profile setParameters = new Profile();
                             setParameters.setFireBaseAuth(loginAuth);
                             setParameters.setFireBaseUser(loginUser);
 
-
-                            //showSuccessfulToast();
+                            showSuccessfulToast();
 
                             // SE LANZA LA NUEVA ACTIVIDAD
                             Intent mainScreen = new Intent(EmailLogin.this, MainActivity.class);
                             mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
                             startActivity(mainScreen);
 
                         }catch(Exception error){
