@@ -5,16 +5,44 @@ import com.archivo.app.R;
 
 public class Box {
 
-    private final String location;
-    private final String price;
-    private final int image;
+    private String imgPath, location, price;
 
 
+    public Box(){
 
-    public Box(String location, String price, int image) {
+    }
+
+    public Box(String location, String price, String imgPath) {
         this.location = location;
         this.price = price;
-        this.image = image;
+        this.imgPath = imgPath;
+    }
+
+
+
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public boolean heart_animation(LottieAnimationView heart, int animation, boolean like) {
@@ -38,16 +66,4 @@ public class Box {
     }
 
 
-
-    public String getLocation() {
-        return location;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public int getImage() {
-        return image;
-    }
 }

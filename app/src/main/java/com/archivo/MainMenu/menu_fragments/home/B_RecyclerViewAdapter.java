@@ -77,7 +77,7 @@ public class B_RecyclerViewAdapter extends RecyclerView.Adapter<B_RecyclerViewAd
 
        holder.tvLocation.setText(boxes.get(position).getLocation());
        holder.tvPrice.setText(boxes.get(position).getPrice());
-       holder.imageView.setImageResource(boxes.get(position).getImage());
+       //holder.imageView.setImageResource(boxes.get(position).getImage());
 
     }
 

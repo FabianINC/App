@@ -40,6 +40,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
+    // FirebaseUI for Cloud Firestore
+    implementation 'com.firebaseui:firebase-ui-firestore:8.0.2'
+
     //RECICLER VIEW
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
@@ -77,3 +80,7 @@ dependencies {
     //Glide dependencies
     implementation 'com.github.bumptech.glide:glide:4.14.2'
 }
+
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.android.application'

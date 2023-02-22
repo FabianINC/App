@@ -102,7 +102,7 @@ public class Profile extends Fragment {
             public void onAnimationClick(int position, LottieAnimationView heart) {
 
 
-                like = boxes.get(position).heart_animation(heart, R.raw.heart, like);
+                //like = boxes.get(position).heart_animation(heart, R.raw.heart, like);
 
 
             }
@@ -151,7 +151,7 @@ public class Profile extends Fragment {
         for (int i = 0; i < 10; i++) {
 
 
-            boxes.add(new Box("Alajuela, Costa Rica", "₡25,000", R.drawable.img_prueba));
+            //boxes.add(new Box("Alajuela, Costa Rica", "₡25,000", R.drawable.img_prueba));
 
 
         }
