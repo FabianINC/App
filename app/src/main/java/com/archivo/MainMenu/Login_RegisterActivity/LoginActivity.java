@@ -32,6 +32,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
 
+
     // VARIABLES GLOBALES
     private EditText inputEmail,inputPassword;
     private TextView newUser, resetPassword;

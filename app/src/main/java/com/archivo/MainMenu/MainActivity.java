@@ -8,11 +8,15 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.archivo.MainMenu.menu_fragments.ViewPageAdapter;
+import com.archivo.MainMenu.menu_fragments.profile.Profile;
 import com.archivo.app.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,10 +28,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //Invisibiliza la status bar
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
+        // INVISIBILIZA LA STATUS BAR
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setContentView(R.layout.activity_main);
+
+        String userEmail = getIntent().getStringExtra("userEmail"); // OBTENGO EL CORREO ENVIADO
+        String userName = getIntent().getStringExtra("userName"); // OBTENGO EL CORREO ENVIADO
+        String userPhone = getIntent().getStringExtra("userPhone"); // OBTENGO EL CORREO ENVIADO
+
+        //COMO PASO EL CORREO AL FRAGMENT DE PROFILE ?
+        Toast.makeText(this, "COREEO: " + userEmail, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "NOMBRE: " + userName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "TELEFONO " + userPhone, Toast.LENGTH_SHORT).show();
+
         bottomNavigationView = findViewById(R.id.bottomNav);
         viewPager2 = findViewById(R.id.viewPager);
         viewPageAdapter = new ViewPageAdapter(this);
@@ -87,5 +100,6 @@ public class MainActivity extends AppCompatActivity {
         return viewPager2;
 
     }
+
 
 }

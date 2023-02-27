@@ -80,5 +80,8 @@
     <string name="txtWrongOTPInput">Ingresa un número de telefono válido</string>
     <string name="txtWrongConfirmationInput">Las contraseñas no coinciden</string>
 
+    <!-- EDITABLE STRINGS -->
+    <string name="txtEditableUserEmail"></string>
+
 
 </resources>

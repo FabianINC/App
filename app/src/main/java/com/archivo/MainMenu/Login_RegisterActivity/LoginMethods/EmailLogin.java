@@ -58,7 +58,6 @@ public class EmailLogin extends LoginActivity {
             FirebaseUser loginUser = loginAuth.getCurrentUser();
 
 
-
             // SE REALIZA LA PETICIÓN PARA LOGEAR UN USUARIO
             loginAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
@@ -68,15 +67,20 @@ public class EmailLogin extends LoginActivity {
                         loadingProgress.dismiss(); // SE QUITA EL PROGRESS DIALOG
 
                         try{
-                            Profile setParameters = new Profile();
-                            setParameters.setFireBaseAuth(loginAuth);
-                            setParameters.setFireBaseUser(loginUser);
-
                             showSuccessfulToast();
+
+                            String userEmail = loginUser.getEmail();
+                            String userName = loginUser.getDisplayName();
+                            String userPhone = loginUser.getPhoneNumber();
 
                             // SE LANZA LA NUEVA ACTIVIDAD
                             Intent mainScreen = new Intent(EmailLogin.this, MainActivity.class);
                             mainScreen.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                            mainScreen.putExtra("userEmail", userEmail); // ENVÍO EL CORREO
+                            mainScreen.putExtra("userName", userName); // ENVÍO EL NOMBRE
+                            mainScreen.putExtra("userPhone", userPhone); // ENVÍO EL NÚMERO TELEFONICO
+
 
                             startActivity(mainScreen);
 
@@ -94,5 +98,7 @@ public class EmailLogin extends LoginActivity {
         }
 
     }
+
+
 
 }

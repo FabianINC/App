@@ -55,12 +55,13 @@ public class Profile extends Fragment {
     private TextView email;
 
 
-    private FirebaseUser loggedUser;
-    private FirebaseAuth usedAuth;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
@@ -68,8 +69,8 @@ public class Profile extends Fragment {
         email = view.findViewById(R.id.txtProfileEmail);
 
         try{
-            String correoUsado = loggedUser.getEmail();
-            email.setText(correoUsado);
+
+            email.setText("");
         }catch(Exception error){
 
             email.setText("CORREO NULO");
@@ -147,24 +148,12 @@ public class Profile extends Fragment {
 
     private void setUpBoxModels() {
 
-
         for (int i = 0; i < 10; i++) {
-
-
             //boxes.add(new Box("Alajuela, Costa Rica", "₡25,000", R.drawable.img_prueba));
-
-
         }
     }
 
 
-    public void setFireBaseUser(FirebaseUser loggedUser){
-        this.loggedUser = loggedUser;
-    }
 
-
-    public void setFireBaseAuth(FirebaseAuth usedAuth){
-        this.usedAuth = usedAuth;
-    }
 
 }
